@@ -1,0 +1,256 @@
+{
+  "artifact_url": null,
+  "branch": "feature/domain",
+  "branch_kind": "feature",
+  "branch_slug": "feature-domain",
+  "clock_source": "emu_estimated",
+  "commit": "a740696913b9c76f32f1b483ec4cbb705f2d7bad",
+  "commit_timestamp": null,
+  "cpu": {
+    "profiled_instructions": 16870845,
+    "top_inclusive": [
+      {
+        "cycles": 20938661,
+        "name": "<lpc_engine[e99d43dab2f9c0a1]::engine::engine::Engine>::tick",
+        "percent": 98.9
+      },
+      {
+        "cycles": 20870049,
+        "name": "FixtureNode::tick",
+        "percent": 98.6
+      },
+      {
+        "cycles": 15909565,
+        "name": "fw_emu[6ff7ecaddb67a146]::server_loop::run_server_loop",
+        "percent": 75.1
+      },
+      {
+        "cycles": 15844201,
+        "name": "<lpa_server[1cfa1e7277c6aff9]::server::LpServer>::tick",
+        "percent": 74.8
+      },
+      {
+        "cycles": 15775335,
+        "name": "<lpc_engine[e99d43dab2f9c0a1]::project_runtime::core_project_runtime::CoreProjectRuntime>::tick",
+        "percent": 74.5
+      },
+      {
+        "cycles": 7886969,
+        "name": "core::fixture_node::accumulate_fixture_channels_from_texture_samples",
+        "percent": 37.2
+      },
+      {
+        "cycles": 5401367,
+        "name": "TextureRenderProduct::sample_batch",
+        "percent": 25.5
+      },
+      {
+        "cycles": 5388883,
+        "name": "<lpc_engine[e99d43dab2f9c0a1]::node::contexts::TickContext>::sample_render_product",
+        "percent": 25.4
+      },
+      {
+        "cycles": 5388679,
+        "name": "SessionHostResolver::sample_render_product",
+        "percent": 25.4
+      },
+      {
+        "cycles": 5388531,
+        "name": "EngineResolveHost::sample_render_product",
+        "percent": 25.4
+      },
+      {
+        "cycles": 4500855,
+        "name": "SessionHostResolver::resolve",
+        "percent": 21.3
+      },
+      {
+        "cycles": 4486475,
+        "name": "<lpc_engine[e99d43dab2f9c0a1]::resolver::resolve_session::ResolveSession>::resolve::<dyn lpc_engine[e99d43dab2f9c0a1]::resolver::resolve_host::ResolveHost>",
+        "percent": 21.2
+      },
+      {
+        "cycles": 4357511,
+        "name": "EngineResolveHost::produce",
+        "percent": 20.6
+      },
+      {
+        "cycles": 4336033,
+        "name": "<lpc_engine[e99d43dab2f9c0a1]::engine::engine::EngineResolveHost>::tick_node_once_for_output",
+        "percent": 20.5
+      },
+      {
+        "cycles": 4325547,
+        "name": "ShaderNode::tick",
+        "percent": 20.4
+      },
+      {
+        "cycles": 4215925,
+        "name": "NativeJitShader::render",
+        "percent": 19.9
+      },
+      {
+        "cycles": 4143155,
+        "name": "BackendAdapter<lpvm_native[f214612dfc78714]::rt_jit::module::NativeJitModule>::call_render_texture",
+        "percent": 19.6
+      },
+      {
+        "cycles": 4141439,
+        "name": "<jit:0x8002751c>",
+        "percent": 19.6
+      },
+      {
+        "cycles": 3994879,
+        "name": "<jit:0x80026e08>",
+        "percent": 18.9
+      },
+      {
+        "cycles": 2735394,
+        "name": "core::fixture_node::uv_batch_for_fixture_entries",
+        "percent": 12.9
+      }
+    ],
+    "top_self": [
+      {
+        "cycles": 2487219,
+        "name": "float::mul::__mulsf3",
+        "percent": 11.7
+      },
+      {
+        "cycles": 2163474,
+        "name": "core::fixture_node::accumulate_fixture_channels_from_texture_samples",
+        "percent": 10.2
+      },
+      {
+        "cycles": 1659072,
+        "name": "TextureRenderProduct::sample_batch",
+        "percent": 7.8
+      },
+      {
+        "cycles": 1650321,
+        "name": "__gtsf2",
+        "percent": 7.8
+      },
+      {
+        "cycles": 1535993,
+        "name": "__floatunsisf",
+        "percent": 7.3
+      },
+      {
+        "cycles": 1121672,
+        "name": "float::div::__divsf3",
+        "percent": 5.3
+      },
+      {
+        "cycles": 1111040,
+        "name": "__lp_lpfn_psrdnoise2_q32",
+        "percent": 5.2
+      },
+      {
+        "cycles": 1021005,
+        "name": "float::add::__addsf3",
+        "percent": 4.8
+      },
+      {
+        "cycles": 852880,
+        "name": "memcpy",
+        "percent": 4.0
+      },
+      {
+        "cycles": 792576,
+        "name": "fminimum_numf",
+        "percent": 3.7
+      },
+      {
+        "cycles": 737280,
+        "name": "__lp_lpir_fdiv_recip_q32",
+        "percent": 3.5
+      },
+      {
+        "cycles": 621525,
+        "name": "__lps_sin_q32",
+        "percent": 2.9
+      },
+      {
+        "cycles": 612963,
+        "name": "fmaximum_numf",
+        "percent": 2.9
+      },
+      {
+        "cycles": 568641,
+        "name": "__gesf2",
+        "percent": 2.7
+      },
+      {
+        "cycles": 476448,
+        "name": "core::fixture_node::uv_batch_for_fixture_entries",
+        "percent": 2.3
+      },
+      {
+        "cycles": 448206,
+        "name": "__unordsf2",
+        "percent": 2.1
+      },
+      {
+        "cycles": 436224,
+        "name": "<jit:0x80026e08>",
+        "percent": 2.1
+      },
+      {
+        "cycles": 324160,
+        "name": "__fixsfdi",
+        "percent": 1.5
+      },
+      {
+        "cycles": 236376,
+        "name": "__fixunssfsi",
+        "percent": 1.1
+      },
+      {
+        "cycles": 221184,
+        "name": "__mulsf3",
+        "percent": 1.0
+      }
+    ],
+    "total_attributed_cycles": 21174759
+  },
+  "cycle_model": "esp32c6",
+  "cycles_used": 123137130,
+  "frames": {
+    "count": 7,
+    "cycles": [
+      88799727,
+      5228619,
+      5232643,
+      5240231,
+      5251740,
+      5253439,
+      5254577
+    ],
+    "max": 88799727,
+    "p50": 5251740,
+    "p95": 88799727
+  },
+  "memory": {
+    "allocation_count_at_peak": null,
+    "live_bytes_at_end": null,
+    "peak_free_bytes": null,
+    "tracked_bytes_at_peak": null
+  },
+  "metric_kind": "profile",
+  "mode": "steady-render",
+  "repo": null,
+  "run_id": null,
+  "run_url": null,
+  "schema_version": 1,
+  "source": {
+    "imported_at": "2026-05-06T09:29:29.150753+00:00",
+    "kind": "local-backfill",
+    "path": "lightplayer-domain/profiles/2026-05-03T13-04-42--examples-basic--steady-render",
+    "profile_dir": "/Users/yona/dev/photomancer/feature/lightplayer-domain/profiles/2026-05-03T13-04-42--examples-basic--steady-render",
+    "worktree_path": null
+  },
+  "terminated_by": "profile_stop",
+  "timestamp": "2026-05-03T20:04:42.777504+00:00",
+  "workload": "examples/basic"
+}

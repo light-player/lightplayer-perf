@@ -1,0 +1,255 @@
+{
+  "artifact_url": null,
+  "branch": "feature/domain",
+  "branch_kind": "feature",
+  "branch_slug": "feature-domain",
+  "clock_source": "emu_estimated",
+  "commit": "a740696913b9c76f32f1b483ec4cbb705f2d7bad",
+  "commit_timestamp": null,
+  "cpu": {
+    "profiled_instructions": 6273460,
+    "top_inclusive": [
+      {
+        "cycles": 8112238,
+        "name": "_RNvMNtCs7vdP6sowi7e_9lp_server6serverNtB2_8LpServer4tick",
+        "percent": 99.0
+      },
+      {
+        "cycles": 7991299,
+        "name": "_RNvXs_NtNtNtCsleUdn64EJrM_9lp_engine5nodes7fixture7runtimeNtB4_14FixtureRuntimeNtB8_11NodeRuntime6render",
+        "percent": 97.5
+      },
+      {
+        "cycles": 6283560,
+        "name": "_RNvMs2_NtNtCsleUdn64EJrM_9lp_engine7project7runtimeNtB5_17RenderContextImpl23ensure_texture_rendered",
+        "percent": 76.7
+      },
+      {
+        "cycles": 6262404,
+        "name": "_RNvXs1_NtNtCsleUdn64EJrM_9lp_engine7project7runtimeNtB5_17RenderContextImplNtNtNtB9_7runtime8contexts13RenderContext11get_texture",
+        "percent": 76.4
+      },
+      {
+        "cycles": 6220848,
+        "name": "_RNvXs_NtNtNtCsleUdn64EJrM_9lp_engine5nodes6shader7runtimeNtB4_13ShaderRuntimeNtB8_11NodeRuntime6render",
+        "percent": 75.9
+      },
+      {
+        "cycles": 6195056,
+        "name": "_RNvXs1_NtNtCsleUdn64EJrM_9lp_engine3gfx10native_jitNtB5_15NativeJitShaderNtNtB7_9lp_shader8LpShader6render",
+        "percent": 75.6
+      },
+      {
+        "cycles": 6183193,
+        "name": "_RNvNtCselt0TmD3w51_6fw_emu11server_loop15run_server_loop",
+        "percent": 75.4
+      },
+      {
+        "cycles": 6134512,
+        "name": "_RNvXNtCs7KcxGntLP7L_9lp_shader9px_shaderINtB2_14BackendAdapterNtNtNtCsagROE2phg26_11lpvm_native6rt_jit6module15NativeJitModuleENtB2_15PxShaderBackend19call_render_textureCsleUdn64EJrM_9lp_engine",
+        "percent": 74.9
+      },
+      {
+        "cycles": 6132864,
+        "name": "<jit:0x800268bc>",
+        "percent": 74.8
+      },
+      {
+        "cycles": 5987328,
+        "name": "<jit:0x800261a8>",
+        "percent": 73.1
+      },
+      {
+        "cycles": 3984640,
+        "name": "<jit:0x80025fa8>",
+        "percent": 48.6
+      },
+      {
+        "cycles": 3318784,
+        "name": "__lp_lpfn_psrdnoise2_q32",
+        "percent": 40.5
+      },
+      {
+        "cycles": 774144,
+        "name": "__lp_lpir_fdiv_recip_q32",
+        "percent": 9.4
+      },
+      {
+        "cycles": 753664,
+        "name": "<jit:0x80025b18>",
+        "percent": 9.2
+      },
+      {
+        "cycles": 464896,
+        "name": "<jit:0x80025180>",
+        "percent": 5.7
+      },
+      {
+        "cycles": 409856,
+        "name": "__divdi3",
+        "percent": 5.0
+      },
+      {
+        "cycles": 387244,
+        "name": "_RNvNtCscjUWdHWyLOR_4core3fmt5write",
+        "percent": 4.7
+      },
+      {
+        "cycles": 378112,
+        "name": "__lps_sin_q32",
+        "percent": 4.6
+      },
+      {
+        "cycles": 307200,
+        "name": "_RNvXNtNtNtNtNtCsleUdn64EJrM_9lp_engine5nodes7fixture7mapping8sampling6rgba16NtB2_13Rgba16SamplerNtB4_14TextureSampler12sample_pixel",
+        "percent": 3.7
+      },
+      {
+        "cycles": 277760,
+        "name": "__lps_atan2_q32",
+        "percent": 3.4
+      }
+    ],
+    "top_self": [
+      {
+        "cycles": 2887680,
+        "name": "__lp_lpfn_psrdnoise2_q32",
+        "percent": 35.2
+      },
+      {
+        "cycles": 1176148,
+        "name": "_RNvXs_NtNtNtCsleUdn64EJrM_9lp_engine5nodes7fixture7runtimeNtB4_14FixtureRuntimeNtB8_11NodeRuntime6render",
+        "percent": 14.4
+      },
+      {
+        "cycles": 737280,
+        "name": "__lp_lpir_fdiv_recip_q32",
+        "percent": 9.0
+      },
+      {
+        "cycles": 436224,
+        "name": "<jit:0x800261a8>",
+        "percent": 5.3
+      },
+      {
+        "cycles": 356096,
+        "name": "__lps_sin_q32",
+        "percent": 4.3
+      },
+      {
+        "cycles": 288768,
+        "name": "_RNvXNtNtNtNtNtCsleUdn64EJrM_9lp_engine5nodes7fixture7mapping8sampling6rgba16NtB2_13Rgba16SamplerNtB4_14TextureSampler12sample_pixel",
+        "percent": 3.5
+      },
+      {
+        "cycles": 237824,
+        "name": "_RNvNtNtCshNIbS99bNii_17compiler_builtins3int19specialized_div_rem11u64_div_rem",
+        "percent": 2.9
+      },
+      {
+        "cycles": 221184,
+        "name": "__lps_cos_q32",
+        "percent": 2.7
+      },
+      {
+        "cycles": 220160,
+        "name": "<jit:0x80025180>",
+        "percent": 2.7
+      },
+      {
+        "cycles": 166164,
+        "name": "_RNvXs1_NtNtCsleUdn64EJrM_9lp_engine7project7runtimeNtB5_17RenderContextImplNtNtNtB9_7runtime8contexts13RenderContext10get_output",
+        "percent": 2.0
+      },
+      {
+        "cycles": 159744,
+        "name": "__divdi3",
+        "percent": 1.9
+      },
+      {
+        "cycles": 157696,
+        "name": "__lp_lpir_ffloor_q32",
+        "percent": 1.9
+      },
+      {
+        "cycles": 149504,
+        "name": "<jit:0x80025fa8>",
+        "percent": 1.8
+      },
+      {
+        "cycles": 126976,
+        "name": "__lps_atan2_q32",
+        "percent": 1.5
+      },
+      {
+        "cycles": 121856,
+        "name": "<jit:0x800268bc>",
+        "percent": 1.5
+      },
+      {
+        "cycles": 116736,
+        "name": "<jit:0x80025b18>",
+        "percent": 1.4
+      },
+      {
+        "cycles": 97280,
+        "name": "<jit:0x80024ff0>",
+        "percent": 1.2
+      },
+      {
+        "cycles": 84448,
+        "name": "memcpy",
+        "percent": 1.0
+      },
+      {
+        "cycles": 41361,
+        "name": "_RNvMs_CseaHXR4j6SA6_21linked_list_allocatorNtB4_4Heap18allocate_first_fit",
+        "percent": 0.5
+      },
+      {
+        "cycles": 40251,
+        "name": "_RNvMs_NtCseaHXR4j6SA6_21linked_list_allocator4holeNtB4_8HoleList10deallocate",
+        "percent": 0.5
+      }
+    ],
+    "total_attributed_cycles": 8195244
+  },
+  "cycle_model": "esp32c6",
+  "cycles_used": 98712108,
+  "frames": {
+    "count": 6,
+    "cycles": [
+      36936980,
+      1984491,
+      1985622,
+      2012654,
+      2020770,
+      2018942
+    ],
+    "max": 36936980,
+    "p50": 2015798,
+    "p95": 36936980
+  },
+  "memory": {
+    "allocation_count_at_peak": null,
+    "live_bytes_at_end": null,
+    "peak_free_bytes": null,
+    "tracked_bytes_at_peak": null
+  },
+  "metric_kind": "profile",
+  "mode": "steady-render",
+  "repo": null,
+  "run_id": null,
+  "run_url": null,
+  "schema_version": 1,
+  "source": {
+    "imported_at": "2026-05-06T09:28:39.750073+00:00",
+    "kind": "local-backfill",
+    "path": "lightplayer-domain/profiles/2026-04-19T22-56-15--examples-basic--steady-render--wrapping-reciprocal",
+    "profile_dir": "/Users/yona/dev/photomancer/feature/lightplayer-domain/profiles/2026-04-19T22-56-15--examples-basic--steady-render--wrapping-reciprocal",
+    "worktree_path": null
+  },
+  "terminated_by": "profile_stop",
+  "timestamp": "2026-04-20T05:56:15.852215+00:00",
+  "workload": "examples/basic"
+}

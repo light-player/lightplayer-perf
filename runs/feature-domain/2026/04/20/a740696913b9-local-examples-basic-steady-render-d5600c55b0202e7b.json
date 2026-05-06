@@ -1,0 +1,255 @@
+{
+  "artifact_url": null,
+  "branch": "feature/domain",
+  "branch_kind": "feature",
+  "branch_slug": "feature-domain",
+  "clock_source": "emu_estimated",
+  "commit": "a740696913b9c76f32f1b483ec4cbb705f2d7bad",
+  "commit_timestamp": null,
+  "cpu": {
+    "profiled_instructions": 6265609,
+    "top_inclusive": [
+      {
+        "cycles": 8103655,
+        "name": "<lp_server[66f275835194d288]::server::LpServer>::tick",
+        "percent": 99.0
+      },
+      {
+        "cycles": 7982716,
+        "name": "FixtureRuntime::render",
+        "percent": 97.5
+      },
+      {
+        "cycles": 6274977,
+        "name": "<lp_engine[2b3058deb3e66d36]::project::runtime::RenderContextImpl>::ensure_texture_rendered",
+        "percent": 76.6
+      },
+      {
+        "cycles": 6253821,
+        "name": "RenderContextImpl::get_texture",
+        "percent": 76.4
+      },
+      {
+        "cycles": 6212265,
+        "name": "ShaderRuntime::render",
+        "percent": 75.9
+      },
+      {
+        "cycles": 6186473,
+        "name": "NativeJitShader::render",
+        "percent": 75.6
+      },
+      {
+        "cycles": 6163525,
+        "name": "fw_emu[1f6bf82e169e2f9f]::server_loop::run_server_loop",
+        "percent": 75.3
+      },
+      {
+        "cycles": 6127061,
+        "name": "[jit] __render_texture_rgba16",
+        "percent": 74.8
+      },
+      {
+        "cycles": 6125929,
+        "name": "BackendAdapter<lpvm_native[751c2f204eb699ad]::rt_jit::module::NativeJitModule>::call_render_texture",
+        "percent": 74.8
+      },
+      {
+        "cycles": 6004277,
+        "name": "[jit] render",
+        "percent": 73.3
+      },
+      {
+        "cycles": 3993397,
+        "name": "[jit] prsd_demo",
+        "percent": 48.8
+      },
+      {
+        "cycles": 3317392,
+        "name": "__lp_lpfn_psrdnoise2_q32",
+        "percent": 40.5
+      },
+      {
+        "cycles": 778240,
+        "name": "[jit] applyPalette",
+        "percent": 9.5
+      },
+      {
+        "cycles": 774144,
+        "name": "__lp_lpir_fdiv_recip_q32",
+        "percent": 9.5
+      },
+      {
+        "cycles": 491520,
+        "name": "[jit] paletteRainbow",
+        "percent": 6.0
+      },
+      {
+        "cycles": 402742,
+        "name": "__divdi3",
+        "percent": 4.9
+      },
+      {
+        "cycles": 387244,
+        "name": "core[6ef2f7b2eacddb78]::fmt::write",
+        "percent": 4.7
+      },
+      {
+        "cycles": 378112,
+        "name": "__lps_sin_q32",
+        "percent": 4.6
+      },
+      {
+        "cycles": 307200,
+        "name": "Rgba16Sampler::sample_pixel",
+        "percent": 3.8
+      },
+      {
+        "cycles": 262354,
+        "name": "__lps_atan2_q32",
+        "percent": 3.2
+      }
+    ],
+    "top_self": [
+      {
+        "cycles": 2886288,
+        "name": "__lp_lpfn_psrdnoise2_q32",
+        "percent": 35.3
+      },
+      {
+        "cycles": 1176148,
+        "name": "FixtureRuntime::render",
+        "percent": 14.4
+      },
+      {
+        "cycles": 737280,
+        "name": "__lp_lpir_fdiv_recip_q32",
+        "percent": 9.0
+      },
+      {
+        "cycles": 460800,
+        "name": "[jit] render",
+        "percent": 5.6
+      },
+      {
+        "cycles": 356096,
+        "name": "__lps_sin_q32",
+        "percent": 4.3
+      },
+      {
+        "cycles": 288768,
+        "name": "Rgba16Sampler::sample_pixel",
+        "percent": 3.5
+      },
+      {
+        "cycles": 244736,
+        "name": "[jit] paletteRainbow",
+        "percent": 3.0
+      },
+      {
+        "cycles": 226954,
+        "name": "int::specialized_div_rem::u64_div_rem",
+        "percent": 2.8
+      },
+      {
+        "cycles": 223283,
+        "name": "__lps_cos_q32",
+        "percent": 2.7
+      },
+      {
+        "cycles": 166164,
+        "name": "RenderContextImpl::get_output",
+        "percent": 2.0
+      },
+      {
+        "cycles": 165888,
+        "name": "[jit] prsd_demo",
+        "percent": 2.0
+      },
+      {
+        "cycles": 163500,
+        "name": "__divdi3",
+        "percent": 2.0
+      },
+      {
+        "cycles": 157696,
+        "name": "__lp_lpir_ffloor_q32",
+        "percent": 1.9
+      },
+      {
+        "cycles": 137216,
+        "name": "[jit] applyPalette",
+        "percent": 1.7
+      },
+      {
+        "cycles": 125436,
+        "name": "[jit] __render_texture_rgba16",
+        "percent": 1.5
+      },
+      {
+        "cycles": 123708,
+        "name": "__lps_atan2_q32",
+        "percent": 1.5
+      },
+      {
+        "cycles": 115712,
+        "name": "[jit] paletteHeatmap",
+        "percent": 1.4
+      },
+      {
+        "cycles": 84448,
+        "name": "memcpy",
+        "percent": 1.0
+      },
+      {
+        "cycles": 41361,
+        "name": "<linked_list_allocator[fc5c8319a2cc5ee7]::Heap>::allocate_first_fit",
+        "percent": 0.5
+      },
+      {
+        "cycles": 40251,
+        "name": "<linked_list_allocator[fc5c8319a2cc5ee7]::hole::HoleList>::deallocate",
+        "percent": 0.5
+      }
+    ],
+    "total_attributed_cycles": 8186661
+  },
+  "cycle_model": "esp32c6",
+  "cycles_used": 98749579,
+  "frames": {
+    "count": 6,
+    "cycles": [
+      36946044,
+      1994877,
+      1996707,
+      2004961,
+      2013791,
+      2013946
+    ],
+    "max": 36946044,
+    "p50": 2009376,
+    "p95": 36946044
+  },
+  "memory": {
+    "allocation_count_at_peak": null,
+    "live_bytes_at_end": null,
+    "peak_free_bytes": null,
+    "tracked_bytes_at_peak": null
+  },
+  "metric_kind": "profile",
+  "mode": "steady-render",
+  "repo": null,
+  "run_id": null,
+  "run_url": null,
+  "schema_version": 1,
+  "source": {
+    "imported_at": "2026-05-06T09:28:47.552990+00:00",
+    "kind": "local-backfill",
+    "path": "lightplayer-domain/profiles/2026-04-20T09-37-10--examples-basic--steady-render--wrapping-reciprocal",
+    "profile_dir": "/Users/yona/dev/photomancer/feature/lightplayer-domain/profiles/2026-04-20T09-37-10--examples-basic--steady-render--wrapping-reciprocal",
+    "worktree_path": null
+  },
+  "terminated_by": "profile_stop",
+  "timestamp": "2026-04-20T16:37:10.291574+00:00",
+  "workload": "examples/basic"
+}

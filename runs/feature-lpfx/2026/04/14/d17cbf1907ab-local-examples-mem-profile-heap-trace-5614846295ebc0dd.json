@@ -1,0 +1,49 @@
+{
+  "artifact_url": null,
+  "branch": "feature/lpfx",
+  "branch_kind": "feature",
+  "branch_slug": "feature-lpfx",
+  "clock_source": "emu_estimated",
+  "commit": "d17cbf1907abe36d0207fb45404bc1e24834c148",
+  "commit_timestamp": "2026-04-19T21:51:38-07:00",
+  "cpu": null,
+  "cycle_model": null,
+  "cycles_used": null,
+  "frames": {
+    "count": 10,
+    "cycles": [],
+    "max": null,
+    "p50": null,
+    "p95": null
+  },
+  "legacy_trace": {
+    "events": 32132,
+    "note": "2026-04-14T17-19-12--examples-mem-profile--lpvm-fa3",
+    "project": "2026.01.21-03.01.12-test-project"
+  },
+  "memory": {
+    "allocation_count_at_peak": 1512,
+    "final_free_bytes": 309003,
+    "heap_kb": 320,
+    "live_allocation_count_at_end": 158,
+    "live_bytes_at_end": 18677,
+    "peak_free_bytes": 149250,
+    "tracked_bytes_at_peak": 178430
+  },
+  "metric_kind": "heap-trace",
+  "mode": "heap-trace",
+  "repo": "light-player/lightplayer",
+  "run_id": null,
+  "run_url": null,
+  "schema_version": 1,
+  "source": {
+    "imported_at": "2026-05-06T09:28:17.672384Z",
+    "kind": "local-backfill",
+    "path": "lightplayer-lpfx/traces/2026-04-14T17-19-12--examples-mem-profile--lpvm-fa3",
+    "profile_dir": "lightplayer-lpfx/traces/2026-04-14T17-19-12--examples-mem-profile--lpvm-fa3",
+    "worktree_path": null
+  },
+  "terminated_by": null,
+  "timestamp": "2026-04-14T17:19:12Z",
+  "workload": "examples/mem/profile"
+}

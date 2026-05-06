@@ -1,0 +1,255 @@
+{
+  "artifact_url": null,
+  "branch": "feature/domain",
+  "branch_kind": "feature",
+  "branch_slug": "feature-domain",
+  "clock_source": "emu_estimated",
+  "commit": "a740696913b9c76f32f1b483ec4cbb705f2d7bad",
+  "commit_timestamp": null,
+  "cpu": {
+    "profiled_instructions": 6265609,
+    "top_inclusive": [
+      {
+        "cycles": 8103655,
+        "name": "_RNvMNtCs8PZ4rD4aRoi_9lp_server6serverNtB2_8LpServer4tick",
+        "percent": 99.0
+      },
+      {
+        "cycles": 7982716,
+        "name": "_RNvXs_NtNtNtCs3HTnIBYoJaQ_9lp_engine5nodes7fixture7runtimeNtB4_14FixtureRuntimeNtB8_11NodeRuntime6render",
+        "percent": 97.5
+      },
+      {
+        "cycles": 6274977,
+        "name": "_RNvMs2_NtNtCs3HTnIBYoJaQ_9lp_engine7project7runtimeNtB5_17RenderContextImpl23ensure_texture_rendered",
+        "percent": 76.6
+      },
+      {
+        "cycles": 6253821,
+        "name": "_RNvXs1_NtNtCs3HTnIBYoJaQ_9lp_engine7project7runtimeNtB5_17RenderContextImplNtNtNtB9_7runtime8contexts13RenderContext11get_texture",
+        "percent": 76.4
+      },
+      {
+        "cycles": 6212265,
+        "name": "_RNvXs_NtNtNtCs3HTnIBYoJaQ_9lp_engine5nodes6shader7runtimeNtB4_13ShaderRuntimeNtB8_11NodeRuntime6render",
+        "percent": 75.9
+      },
+      {
+        "cycles": 6186473,
+        "name": "_RNvXs1_NtNtCs3HTnIBYoJaQ_9lp_engine3gfx10native_jitNtB5_15NativeJitShaderNtNtB7_9lp_shader8LpShader6render",
+        "percent": 75.6
+      },
+      {
+        "cycles": 6163525,
+        "name": "_RNvNtCs2HfWWcI4Ae9_6fw_emu11server_loop15run_server_loop",
+        "percent": 75.3
+      },
+      {
+        "cycles": 6127061,
+        "name": "[jit] __render_texture_rgba16",
+        "percent": 74.8
+      },
+      {
+        "cycles": 6125929,
+        "name": "_RNvXNtCs7emKO8Tk8wl_9lp_shader9px_shaderINtB2_14BackendAdapterNtNtNtCsa3ncK550Tnd_11lpvm_native6rt_jit6module15NativeJitModuleENtB2_15PxShaderBackend19call_render_textureCs3HTnIBYoJaQ_9lp_engine",
+        "percent": 74.8
+      },
+      {
+        "cycles": 6004277,
+        "name": "[jit] render",
+        "percent": 73.3
+      },
+      {
+        "cycles": 3993397,
+        "name": "[jit] prsd_demo",
+        "percent": 48.8
+      },
+      {
+        "cycles": 3317392,
+        "name": "__lp_lpfn_psrdnoise2_q32",
+        "percent": 40.5
+      },
+      {
+        "cycles": 778240,
+        "name": "[jit] applyPalette",
+        "percent": 9.5
+      },
+      {
+        "cycles": 774144,
+        "name": "__lp_lpir_fdiv_recip_q32",
+        "percent": 9.5
+      },
+      {
+        "cycles": 491520,
+        "name": "[jit] paletteRainbow",
+        "percent": 6.0
+      },
+      {
+        "cycles": 402742,
+        "name": "__divdi3",
+        "percent": 4.9
+      },
+      {
+        "cycles": 387244,
+        "name": "_RNvNtCs9wzVgwe5cRU_4core3fmt5write",
+        "percent": 4.7
+      },
+      {
+        "cycles": 378112,
+        "name": "__lps_sin_q32",
+        "percent": 4.6
+      },
+      {
+        "cycles": 307200,
+        "name": "_RNvXNtNtNtNtNtCs3HTnIBYoJaQ_9lp_engine5nodes7fixture7mapping8sampling6rgba16NtB2_13Rgba16SamplerNtB4_14TextureSampler12sample_pixel",
+        "percent": 3.8
+      },
+      {
+        "cycles": 262354,
+        "name": "__lps_atan2_q32",
+        "percent": 3.2
+      }
+    ],
+    "top_self": [
+      {
+        "cycles": 2886288,
+        "name": "__lp_lpfn_psrdnoise2_q32",
+        "percent": 35.3
+      },
+      {
+        "cycles": 1176148,
+        "name": "_RNvXs_NtNtNtCs3HTnIBYoJaQ_9lp_engine5nodes7fixture7runtimeNtB4_14FixtureRuntimeNtB8_11NodeRuntime6render",
+        "percent": 14.4
+      },
+      {
+        "cycles": 737280,
+        "name": "__lp_lpir_fdiv_recip_q32",
+        "percent": 9.0
+      },
+      {
+        "cycles": 460800,
+        "name": "[jit] render",
+        "percent": 5.6
+      },
+      {
+        "cycles": 356096,
+        "name": "__lps_sin_q32",
+        "percent": 4.3
+      },
+      {
+        "cycles": 288768,
+        "name": "_RNvXNtNtNtNtNtCs3HTnIBYoJaQ_9lp_engine5nodes7fixture7mapping8sampling6rgba16NtB2_13Rgba16SamplerNtB4_14TextureSampler12sample_pixel",
+        "percent": 3.5
+      },
+      {
+        "cycles": 244736,
+        "name": "[jit] paletteRainbow",
+        "percent": 3.0
+      },
+      {
+        "cycles": 226954,
+        "name": "_RNvNtNtCsiiivOCe9TSB_17compiler_builtins3int19specialized_div_rem11u64_div_rem",
+        "percent": 2.8
+      },
+      {
+        "cycles": 223283,
+        "name": "__lps_cos_q32",
+        "percent": 2.7
+      },
+      {
+        "cycles": 166164,
+        "name": "_RNvXs1_NtNtCs3HTnIBYoJaQ_9lp_engine7project7runtimeNtB5_17RenderContextImplNtNtNtB9_7runtime8contexts13RenderContext10get_output",
+        "percent": 2.0
+      },
+      {
+        "cycles": 165888,
+        "name": "[jit] prsd_demo",
+        "percent": 2.0
+      },
+      {
+        "cycles": 163500,
+        "name": "__divdi3",
+        "percent": 2.0
+      },
+      {
+        "cycles": 157696,
+        "name": "__lp_lpir_ffloor_q32",
+        "percent": 1.9
+      },
+      {
+        "cycles": 137216,
+        "name": "[jit] applyPalette",
+        "percent": 1.7
+      },
+      {
+        "cycles": 125436,
+        "name": "[jit] __render_texture_rgba16",
+        "percent": 1.5
+      },
+      {
+        "cycles": 123708,
+        "name": "__lps_atan2_q32",
+        "percent": 1.5
+      },
+      {
+        "cycles": 115712,
+        "name": "[jit] paletteHeatmap",
+        "percent": 1.4
+      },
+      {
+        "cycles": 84448,
+        "name": "memcpy",
+        "percent": 1.0
+      },
+      {
+        "cycles": 41361,
+        "name": "_RNvMs_CslFjrMFmVoDr_21linked_list_allocatorNtB4_4Heap18allocate_first_fit",
+        "percent": 0.5
+      },
+      {
+        "cycles": 40251,
+        "name": "_RNvMs_NtCslFjrMFmVoDr_21linked_list_allocator4holeNtB4_8HoleList10deallocate",
+        "percent": 0.5
+      }
+    ],
+    "total_attributed_cycles": 8186661
+  },
+  "cycle_model": "esp32c6",
+  "cycles_used": 98749579,
+  "frames": {
+    "count": 6,
+    "cycles": [
+      36946044,
+      1994877,
+      1996707,
+      2004961,
+      2013791,
+      2013946
+    ],
+    "max": 36946044,
+    "p50": 2009376,
+    "p95": 36946044
+  },
+  "memory": {
+    "allocation_count_at_peak": null,
+    "live_bytes_at_end": null,
+    "peak_free_bytes": null,
+    "tracked_bytes_at_peak": null
+  },
+  "metric_kind": "profile",
+  "mode": "steady-render",
+  "repo": null,
+  "run_id": null,
+  "run_url": null,
+  "schema_version": 1,
+  "source": {
+    "imported_at": "2026-05-06T09:28:44.987093+00:00",
+    "kind": "local-backfill",
+    "path": "lightplayer-domain/profiles/2026-04-20T08-55-57--examples-basic--steady-render--wrapping-reciprocal",
+    "profile_dir": "/Users/yona/dev/photomancer/feature/lightplayer-domain/profiles/2026-04-20T08-55-57--examples-basic--steady-render--wrapping-reciprocal",
+    "worktree_path": null
+  },
+  "terminated_by": "profile_stop",
+  "timestamp": "2026-04-20T15:55:57.556657+00:00",
+  "workload": "examples/basic"
+}

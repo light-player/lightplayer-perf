@@ -1,0 +1,255 @@
+{
+  "artifact_url": null,
+  "branch": "feature/emu-perf-psrdnoise2-q32",
+  "branch_kind": "feature",
+  "branch_slug": "feature-emu-perf-psrdnoise2-q32",
+  "clock_source": "emu_estimated",
+  "commit": "7231b98016666457d43d3e4643bb11c217af3c7f",
+  "commit_timestamp": null,
+  "cpu": {
+    "profiled_instructions": 4470041,
+    "top_inclusive": [
+      {
+        "cycles": 5849445,
+        "name": "<lp_server[66f275835194d288]::server::LpServer>::tick",
+        "percent": 98.6
+      },
+      {
+        "cycles": 5727686,
+        "name": "FixtureRuntime::render",
+        "percent": 96.6
+      },
+      {
+        "cycles": 4471744,
+        "name": "fw_emu[1f6bf82e169e2f9f]::server_loop::run_server_loop",
+        "percent": 75.4
+      },
+      {
+        "cycles": 4018976,
+        "name": "<lp_engine[2b3058deb3e66d36]::project::runtime::RenderContextImpl>::ensure_texture_rendered",
+        "percent": 67.8
+      },
+      {
+        "cycles": 3998148,
+        "name": "RenderContextImpl::get_texture",
+        "percent": 67.4
+      },
+      {
+        "cycles": 3957180,
+        "name": "ShaderRuntime::render",
+        "percent": 66.7
+      },
+      {
+        "cycles": 3931716,
+        "name": "NativeJitShader::render",
+        "percent": 66.3
+      },
+      {
+        "cycles": 3872600,
+        "name": "[jit] __render_texture_rgba16",
+        "percent": 65.3
+      },
+      {
+        "cycles": 3871468,
+        "name": "BackendAdapter<lpvm_native[751c2f204eb699ad]::rt_jit::module::NativeJitModule>::call_render_texture",
+        "percent": 65.3
+      },
+      {
+        "cycles": 3749816,
+        "name": "[jit] render",
+        "percent": 63.2
+      },
+      {
+        "cycles": 1969336,
+        "name": "[jit] prsd_demo",
+        "percent": 33.2
+      },
+      {
+        "cycles": 1139712,
+        "name": "__lp_lpfn_psrdnoise2_q32",
+        "percent": 19.2
+      },
+      {
+        "cycles": 735232,
+        "name": "[jit] applyPalette",
+        "percent": 12.4
+      },
+      {
+        "cycles": 645120,
+        "name": "__lp_lpir_fdiv_recip_q32",
+        "percent": 10.9
+      },
+      {
+        "cycles": 604174,
+        "name": "__lps_sin_q32",
+        "percent": 10.2
+      },
+      {
+        "cycles": 491520,
+        "name": "[jit] paletteRainbow",
+        "percent": 8.3
+      },
+      {
+        "cycles": 383512,
+        "name": "core[6ef2f7b2eacddb78]::fmt::write",
+        "percent": 6.5
+      },
+      {
+        "cycles": 307200,
+        "name": "Rgba16Sampler::sample_pixel",
+        "percent": 5.2
+      },
+      {
+        "cycles": 266332,
+        "name": "__lps_atan2_q32",
+        "percent": 4.5
+      },
+      {
+        "cycles": 228892,
+        "name": "RenderContextImpl::get_output",
+        "percent": 3.9
+      }
+    ],
+    "top_self": [
+      {
+        "cycles": 1176124,
+        "name": "FixtureRuntime::render",
+        "percent": 19.8
+      },
+      {
+        "cycles": 1107968,
+        "name": "__lp_lpfn_psrdnoise2_q32",
+        "percent": 18.7
+      },
+      {
+        "cycles": 614400,
+        "name": "__lp_lpir_fdiv_recip_q32",
+        "percent": 10.4
+      },
+      {
+        "cycles": 567096,
+        "name": "__lps_sin_q32",
+        "percent": 9.6
+      },
+      {
+        "cycles": 400384,
+        "name": "[jit] render",
+        "percent": 6.8
+      },
+      {
+        "cycles": 288768,
+        "name": "Rgba16Sampler::sample_pixel",
+        "percent": 4.9
+      },
+      {
+        "cycles": 244736,
+        "name": "[jit] paletteRainbow",
+        "percent": 4.1
+      },
+      {
+        "cycles": 166164,
+        "name": "RenderContextImpl::get_output",
+        "percent": 2.8
+      },
+      {
+        "cycles": 165888,
+        "name": "[jit] prsd_demo",
+        "percent": 2.8
+      },
+      {
+        "cycles": 129024,
+        "name": "__lp_lpir_ffloor_q32",
+        "percent": 2.2
+      },
+      {
+        "cycles": 125436,
+        "name": "[jit] __render_texture_rgba16",
+        "percent": 2.1
+      },
+      {
+        "cycles": 123665,
+        "name": "__lps_atan2_q32",
+        "percent": 2.1
+      },
+      {
+        "cycles": 122880,
+        "name": "[jit] applyPalette",
+        "percent": 2.1
+      },
+      {
+        "cycles": 115712,
+        "name": "[jit] paletteHeatmap",
+        "percent": 2.0
+      },
+      {
+        "cycles": 92771,
+        "name": "int::specialized_div_rem::u64_div_rem",
+        "percent": 1.6
+      },
+      {
+        "cycles": 84448,
+        "name": "memcpy",
+        "percent": 1.4
+      },
+      {
+        "cycles": 43788,
+        "name": "__divdi3",
+        "percent": 0.7
+      },
+      {
+        "cycles": 41147,
+        "name": "<linked_list_allocator[fc5c8319a2cc5ee7]::Heap>::allocate_first_fit",
+        "percent": 0.7
+      },
+      {
+        "cycles": 39654,
+        "name": "<linked_list_allocator[fc5c8319a2cc5ee7]::hole::HoleList>::deallocate",
+        "percent": 0.7
+      },
+      {
+        "cycles": 25180,
+        "name": "Vec<u8>::from_iter",
+        "percent": 0.4
+      }
+    ],
+    "total_attributed_cycles": 5931473
+  },
+  "cycle_model": "esp32c6",
+  "cycles_used": 91696513,
+  "frames": {
+    "count": 6,
+    "cycles": [
+      36253060,
+      1432132,
+      1433486,
+      1441598,
+      1449690,
+      1450935
+    ],
+    "max": 36253060,
+    "p50": 1445644,
+    "p95": 36253060
+  },
+  "memory": {
+    "allocation_count_at_peak": null,
+    "live_bytes_at_end": null,
+    "peak_free_bytes": null,
+    "tracked_bytes_at_peak": null
+  },
+  "metric_kind": "profile",
+  "mode": "steady-render",
+  "repo": null,
+  "run_id": null,
+  "run_url": null,
+  "schema_version": 1,
+  "source": {
+    "imported_at": "2026-05-06T09:30:10.733586+00:00",
+    "kind": "local-backfill",
+    "path": "lightplayer-emu-perf-psrdnoise2-q32/profiles/2026-04-20T11-37-33--examples-perf-fastmath--steady-render--p5-wrapping",
+    "profile_dir": "/Users/yona/dev/photomancer/feature/lightplayer-emu-perf-psrdnoise2-q32/profiles/2026-04-20T11-37-33--examples-perf-fastmath--steady-render--p5-wrapping",
+    "worktree_path": null
+  },
+  "terminated_by": "profile_stop",
+  "timestamp": "2026-04-20T18:37:33.439433+00:00",
+  "workload": "examples/perf/fastmath"
+}

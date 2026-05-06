@@ -1,0 +1,256 @@
+{
+  "artifact_url": null,
+  "branch": "feature/domain",
+  "branch_kind": "feature",
+  "branch_slug": "feature-domain",
+  "clock_source": "emu_estimated",
+  "commit": "a740696913b9c76f32f1b483ec4cbb705f2d7bad",
+  "commit_timestamp": null,
+  "cpu": {
+    "profiled_instructions": 4698354,
+    "top_inclusive": [
+      {
+        "cycles": 6019605,
+        "name": "<lpc_engine[e99d43dab2f9c0a1]::engine::engine::Engine>::tick",
+        "percent": 96.2
+      },
+      {
+        "cycles": 5950985,
+        "name": "FixtureNode::tick",
+        "percent": 95.1
+      },
+      {
+        "cycles": 4717300,
+        "name": "fw_emu[6ff7ecaddb67a146]::server_loop::run_server_loop",
+        "percent": 75.4
+      },
+      {
+        "cycles": 4651936,
+        "name": "<lpa_server[1cfa1e7277c6aff9]::server::LpServer>::tick",
+        "percent": 74.4
+      },
+      {
+        "cycles": 4583070,
+        "name": "<lpc_engine[e99d43dab2f9c0a1]::project_runtime::core_project_runtime::CoreProjectRuntime>::tick",
+        "percent": 73.3
+      },
+      {
+        "cycles": 4500831,
+        "name": "SessionHostResolver::resolve",
+        "percent": 71.9
+      },
+      {
+        "cycles": 4486451,
+        "name": "<lpc_engine[e99d43dab2f9c0a1]::resolver::resolve_session::ResolveSession>::resolve::<dyn lpc_engine[e99d43dab2f9c0a1]::resolver::resolve_host::ResolveHost>",
+        "percent": 71.7
+      },
+      {
+        "cycles": 4357511,
+        "name": "EngineResolveHost::produce",
+        "percent": 69.7
+      },
+      {
+        "cycles": 4336033,
+        "name": "<lpc_engine[e99d43dab2f9c0a1]::engine::engine::EngineResolveHost>::tick_node_once_for_output",
+        "percent": 69.3
+      },
+      {
+        "cycles": 4325547,
+        "name": "ShaderNode::tick",
+        "percent": 69.1
+      },
+      {
+        "cycles": 4215925,
+        "name": "NativeJitShader::render",
+        "percent": 67.4
+      },
+      {
+        "cycles": 4143155,
+        "name": "BackendAdapter<lpvm_native[f214612dfc78714]::rt_jit::module::NativeJitModule>::call_render_texture",
+        "percent": 66.2
+      },
+      {
+        "cycles": 4141439,
+        "name": "<jit:0x8002751c>",
+        "percent": 66.2
+      },
+      {
+        "cycles": 3994879,
+        "name": "<jit:0x80026e08>",
+        "percent": 63.9
+      },
+      {
+        "cycles": 1942015,
+        "name": "<jit:0x80026c08>",
+        "percent": 31.0
+      },
+      {
+        "cycles": 1240574,
+        "name": "fixture_node::accumulate_fixture_channels::{closure#0}",
+        "percent": 19.8
+      },
+      {
+        "cycles": 1230674,
+        "name": "core::fixture_node::accumulate_fixture_channels",
+        "percent": 19.7
+      },
+      {
+        "cycles": 1229118,
+        "name": "SessionHostResolver::with_native_texture_payload",
+        "percent": 19.6
+      },
+      {
+        "cycles": 1229006,
+        "name": "EngineResolveHost::with_native_texture_payload",
+        "percent": 19.6
+      },
+      {
+        "cycles": 1142784,
+        "name": "__lp_lpfn_psrdnoise2_q32",
+        "percent": 18.3
+      }
+    ],
+    "top_self": [
+      {
+        "cycles": 1111040,
+        "name": "__lp_lpfn_psrdnoise2_q32",
+        "percent": 17.8
+      },
+      {
+        "cycles": 842712,
+        "name": "fixture_node::accumulate_fixture_channels::{closure#0}",
+        "percent": 13.5
+      },
+      {
+        "cycles": 737280,
+        "name": "__lp_lpir_fdiv_recip_q32",
+        "percent": 11.8
+      },
+      {
+        "cycles": 621525,
+        "name": "__lps_sin_q32",
+        "percent": 9.9
+      },
+      {
+        "cycles": 436224,
+        "name": "<jit:0x80026e08>",
+        "percent": 7.0
+      },
+      {
+        "cycles": 288768,
+        "name": "Rgba16Sampler::sample_pixel",
+        "percent": 4.6
+      },
+      {
+        "cycles": 223440,
+        "name": "memcpy",
+        "percent": 3.6
+      },
+      {
+        "cycles": 220160,
+        "name": "<jit:0x80025de0>",
+        "percent": 3.5
+      },
+      {
+        "cycles": 208436,
+        "name": "core::fixture_node::push_fixture_output",
+        "percent": 3.3
+      },
+      {
+        "cycles": 157696,
+        "name": "__lp_lpir_ffloor_q32",
+        "percent": 2.5
+      },
+      {
+        "cycles": 149504,
+        "name": "<jit:0x80026c08>",
+        "percent": 2.4
+      },
+      {
+        "cycles": 124662,
+        "name": "__lps_atan2_q32",
+        "percent": 2.0
+      },
+      {
+        "cycles": 122880,
+        "name": "<jit:0x8002751c>",
+        "percent": 2.0
+      },
+      {
+        "cycles": 116736,
+        "name": "<jit:0x80026778>",
+        "percent": 1.9
+      },
+      {
+        "cycles": 97280,
+        "name": "<jit:0x80025c50>",
+        "percent": 1.6
+      },
+      {
+        "cycles": 87120,
+        "name": "mapping::accumulation::initialize_channel_accumulators",
+        "percent": 1.4
+      },
+      {
+        "cycles": 81184,
+        "name": "<linked_list_allocator[7fcff45d8457539c]::Heap>::allocate_first_fit",
+        "percent": 1.3
+      },
+      {
+        "cycles": 80592,
+        "name": "int::specialized_div_rem::u64_div_rem",
+        "percent": 1.3
+      },
+      {
+        "cycles": 76720,
+        "name": "<linked_list_allocator[7fcff45d8457539c]::hole::HoleList>::deallocate",
+        "percent": 1.2
+      },
+      {
+        "cycles": 50723,
+        "name": "<lpc_engine[e99d43dab2f9c0a1]::project_runtime::core_project_runtime::CoreProjectRuntime>::tick",
+        "percent": 0.8
+      }
+    ],
+    "total_attributed_cycles": 6255703
+  },
+  "cycle_model": "esp32c6",
+  "cycles_used": 97047173,
+  "frames": {
+    "count": 7,
+    "cycles": [
+      85063315,
+      1513148,
+      1513625,
+      1513440,
+      1522696,
+      1522348,
+      1522447
+    ],
+    "max": 85063315,
+    "p50": 1522348,
+    "p95": 85063315
+  },
+  "memory": {
+    "allocation_count_at_peak": null,
+    "live_bytes_at_end": null,
+    "peak_free_bytes": null,
+    "tracked_bytes_at_peak": null
+  },
+  "metric_kind": "profile",
+  "mode": "steady-render",
+  "repo": null,
+  "run_id": null,
+  "run_url": null,
+  "schema_version": 1,
+  "source": {
+    "imported_at": "2026-05-06T09:29:34.478865+00:00",
+    "kind": "local-backfill",
+    "path": "lightplayer-domain/profiles/2026-05-03T13-17-14--examples-basic--steady-render",
+    "profile_dir": "/Users/yona/dev/photomancer/feature/lightplayer-domain/profiles/2026-05-03T13-17-14--examples-basic--steady-render",
+    "worktree_path": null
+  },
+  "terminated_by": "profile_stop",
+  "timestamp": "2026-05-03T20:17:14.478774+00:00",
+  "workload": "examples/basic"
+}
