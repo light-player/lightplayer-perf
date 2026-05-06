@@ -24,8 +24,9 @@ async function fetchJson(path) {
 function populateControls() {
   const workloads = unique(state.runs.map((run) => run.workload).filter(Boolean));
   const branches = state.index.branches || [];
+  const defaultWorkload = preferredMainWorkload(workloads);
 
-  fillSelect($("workload"), workloads, workloads[0] || "");
+  fillSelect($("workload"), workloads, defaultWorkload);
   fillSelect(
     $("branch"),
     branches.map((branch) => branch.slug),
@@ -35,6 +36,17 @@ function populateControls() {
 
   $("workload").addEventListener("change", render);
   $("branch").addEventListener("change", render);
+}
+
+function preferredMainWorkload(workloads) {
+  return workloads
+    .map((workload) => ({
+      workload,
+      count: state.runs.filter(
+        (run) => run.branch_slug === "main" && run.workload === workload && run.mode !== "heap-trace",
+      ).length,
+    }))
+    .sort((a, b) => b.count - a.count || a.workload.localeCompare(b.workload))[0]?.workload || workloads[0] || "";
 }
 
 function fillSelect(select, values, selected, label = (value) => value) {
@@ -88,13 +100,13 @@ function drawChart(canvas, series) {
   const width = canvas.width;
   const height = canvas.height;
   ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = "#fffdf7";
+  ctx.fillStyle = "#090d12";
   ctx.fillRect(0, 0, width, height);
 
   if (!series.length) {
-    ctx.fillStyle = "#6f6759";
-    ctx.font = "24px Avenir Next, sans-serif";
-    ctx.fillText("No main-branch data for this workload yet.", 36, height / 2);
+    ctx.fillStyle = "#7f8b98";
+    ctx.font = "20px IBM Plex Mono, Menlo, monospace";
+    ctx.fillText("no main-branch samples for selected workload", 36, height / 2);
     return;
   }
 
@@ -103,10 +115,12 @@ function drawChart(canvas, series) {
   const min = Math.min(...values);
   const max = Math.max(...values);
   const span = Math.max(1, max - min);
-  const x = (i) => padding + (i / Math.max(1, series.length - 1)) * (width - padding * 2);
+  const x = (i) => series.length === 1
+    ? width / 2
+    : padding + (i / Math.max(1, series.length - 1)) * (width - padding * 2);
   const y = (value) => height - padding - ((value - min) / span) * (height - padding * 2);
 
-  ctx.strokeStyle = "#d9cbb5";
+  ctx.strokeStyle = "#1f2d39";
   ctx.lineWidth = 1;
   for (let i = 0; i < 4; i++) {
     const yy = padding + i * ((height - padding * 2) / 3);
@@ -116,8 +130,8 @@ function drawChart(canvas, series) {
     ctx.stroke();
   }
 
-  ctx.strokeStyle = "#d2542f";
-  ctx.lineWidth = 4;
+  ctx.strokeStyle = "#5eead4";
+  ctx.lineWidth = 2;
   ctx.beginPath();
   series.forEach((point, i) => {
     const xx = x(i);
@@ -127,12 +141,16 @@ function drawChart(canvas, series) {
   });
   ctx.stroke();
 
-  ctx.fillStyle = "#136f63";
+  ctx.fillStyle = "#9fb3ff";
   series.forEach((point, i) => {
     ctx.beginPath();
-    ctx.arc(x(i), y(point.value), 5, 0, Math.PI * 2);
+    ctx.arc(x(i), y(point.value), 4, 0, Math.PI * 2);
     ctx.fill();
   });
+
+  ctx.fillStyle = "#7f8b98";
+  ctx.font = "12px IBM Plex Mono, Menlo, monospace";
+  ctx.fillText(`${series.length} sample(s)`, padding, height - 14);
 }
 
 function renderFeatures(workload) {

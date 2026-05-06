@@ -1,28 +1,12 @@
 {
   "branches": [
     {
-      "kind": "feature",
-      "latest": "latest/feature-lpfx.json",
-      "latest_timestamp": "2026-04-14T17:59:27Z",
-      "name": "feature/lpfx",
-      "runs": 7,
-      "slug": "feature-lpfx"
-    },
-    {
-      "kind": "feature",
-      "latest": "latest/feature-emu-perf-psrdnoise2-q32.json",
-      "latest_timestamp": "2026-04-28T23:48:20.893550Z",
-      "name": "feature/emu-perf-psrdnoise2-q32",
-      "runs": 15,
-      "slug": "feature-emu-perf-psrdnoise2-q32"
-    },
-    {
-      "kind": "feature",
-      "latest": "latest/feature-perf-ci.json",
+      "kind": "main",
+      "latest": "latest/main.json",
       "latest_timestamp": "2026-05-03T19:52:33.287665Z",
-      "name": "feature/perf-ci",
-      "runs": 35,
-      "slug": "feature-perf-ci"
+      "name": "main",
+      "runs": 57,
+      "slug": "main"
     },
     {
       "kind": "feature",
@@ -33,6 +17,6 @@
       "slug": "feature-domain"
     }
   ],
-  "generated_at": "2026-05-06T09:31:41.117838Z",
+  "generated_at": "2026-05-06T17:34:11.692611Z",
   "schema_version": 1
 }

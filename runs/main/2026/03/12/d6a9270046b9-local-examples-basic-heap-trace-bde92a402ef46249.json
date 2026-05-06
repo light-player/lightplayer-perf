@@ -1,0 +1,49 @@
+{
+  "artifact_url": null,
+  "branch": "main",
+  "branch_kind": "main",
+  "branch_slug": "main",
+  "clock_source": "emu_estimated",
+  "commit": "d6a9270046b9cec4ef253be6887382eac4562dd2",
+  "commit_timestamp": "2026-04-28T20:16:30-07:00",
+  "cpu": null,
+  "cycle_model": null,
+  "cycles_used": null,
+  "frames": {
+    "count": 10,
+    "cycles": [],
+    "max": null,
+    "p50": null,
+    "p95": null
+  },
+  "legacy_trace": {
+    "events": 284752,
+    "note": "2026-03-12T10-55-53--examples-basic--lpfx-fns-static",
+    "project": "2026.01.21-03.01.12-test-project"
+  },
+  "memory": {
+    "allocation_count_at_peak": 985,
+    "final_free_bytes": 306321,
+    "heap_kb": 320,
+    "live_allocation_count_at_end": 38,
+    "live_bytes_at_end": 21359,
+    "peak_free_bytes": 164486,
+    "tracked_bytes_at_peak": 163194
+  },
+  "metric_kind": "heap-trace",
+  "mode": "heap-trace",
+  "repo": "light-player/lightplayer",
+  "run_id": null,
+  "run_url": null,
+  "schema_version": 1,
+  "source": {
+    "imported_at": "2026-05-06T09:28:17.672384Z",
+    "kind": "local-backfill",
+    "path": "lp2025/traces/2026-03-12T10-55-53--examples-basic--lpfx-fns-static",
+    "profile_dir": "lp2025/traces/2026-03-12T10-55-53--examples-basic--lpfx-fns-static",
+    "worktree_path": null
+  },
+  "terminated_by": null,
+  "timestamp": "2026-03-12T10:55:53Z",
+  "workload": "examples/basic"
+}

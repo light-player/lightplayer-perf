@@ -1,0 +1,41 @@
+{
+  "artifact_url": null,
+  "branch": "main",
+  "branch_kind": "main",
+  "branch_slug": "main",
+  "clock_source": "emu_estimated",
+  "commit": "d6a9270046b9cec4ef253be6887382eac4562dd2",
+  "commit_timestamp": null,
+  "cpu": null,
+  "cycle_model": "esp32c6",
+  "cycles_used": 0,
+  "frames": {
+    "count": 0,
+    "cycles": [],
+    "max": null,
+    "p50": null,
+    "p95": null
+  },
+  "memory": {
+    "allocation_count_at_peak": null,
+    "live_bytes_at_end": null,
+    "peak_free_bytes": null,
+    "tracked_bytes_at_peak": null
+  },
+  "metric_kind": "heap-trace",
+  "mode": "compile",
+  "repo": null,
+  "run_id": null,
+  "run_url": null,
+  "schema_version": 1,
+  "source": {
+    "imported_at": "2026-05-06T09:30:55.258206+00:00",
+    "kind": "local-backfill",
+    "path": "lp2025/profiles/2026-05-02T12-32-05--examples-basic--compile",
+    "profile_dir": "/Users/yona/dev/photomancer/lp2025/profiles/2026-05-02T12-32-05--examples-basic--compile",
+    "worktree_path": null
+  },
+  "terminated_by": "running",
+  "timestamp": "2026-05-02T19:32:05.367255+00:00",
+  "workload": "examples/basic"
+}
