@@ -5,7 +5,7 @@
       "latest": "latest/feature-lpfx.json",
       "latest_timestamp": "2026-04-14T17:59:27Z",
       "name": "feature/lpfx",
-      "runs": 10,
+      "runs": 7,
       "slug": "feature-lpfx"
     },
     {
@@ -13,7 +13,7 @@
       "latest": "latest/feature-emu-perf-psrdnoise2-q32.json",
       "latest_timestamp": "2026-04-28T23:48:20.893550Z",
       "name": "feature/emu-perf-psrdnoise2-q32",
-      "runs": 17,
+      "runs": 15,
       "slug": "feature-emu-perf-psrdnoise2-q32"
     },
     {
@@ -21,7 +21,7 @@
       "latest": "latest/feature-perf-ci.json",
       "latest_timestamp": "2026-05-03T19:52:33.287665Z",
       "name": "feature/perf-ci",
-      "runs": 44,
+      "runs": 35,
       "slug": "feature-perf-ci"
     },
     {
@@ -29,10 +29,10 @@
       "latest": "latest/feature-domain.json",
       "latest_timestamp": "2026-05-03T21:42:25.809025Z",
       "name": "feature/domain",
-      "runs": 39,
+      "runs": 33,
       "slug": "feature-domain"
     }
   ],
-  "generated_at": "2026-05-06T09:31:20.603535Z",
+  "generated_at": "2026-05-06T09:31:41.117838Z",
   "schema_version": 1
 }
