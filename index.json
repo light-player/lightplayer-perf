@@ -1,7 +1,261 @@
 {
-  "branches": [],
+  "branches": [
+    {
+      "kind": "feature",
+      "latest": "latest/feature-lpfx.json",
+      "latest_timestamp": "2026-04-14T17:59:27Z",
+      "name": "feature/lpfx",
+      "runs": 3,
+      "slug": "feature-lpfx"
+    },
+    {
+      "kind": "feature",
+      "latest": "latest/feature-emu-perf-psrdnoise2-q32.json",
+      "latest_timestamp": "2026-04-28T23:42:17.596262Z",
+      "name": "feature/emu-perf-psrdnoise2-q32",
+      "runs": 2,
+      "slug": "feature-emu-perf-psrdnoise2-q32"
+    },
+    {
+      "kind": "feature",
+      "latest": "latest/feature-perf-ci.json",
+      "latest_timestamp": "2026-05-03T19:52:33.287665Z",
+      "name": "feature/perf-ci",
+      "runs": 9,
+      "slug": "feature-perf-ci"
+    },
+    {
+      "kind": "feature",
+      "latest": "latest/feature-domain.json",
+      "latest_timestamp": "2026-05-03T21:35:53.196342Z",
+      "name": "feature/domain",
+      "runs": 6,
+      "slug": "feature-domain"
+    }
+  ],
   "default_branch": "main",
-  "generated_at": null,
-  "runs": [],
+  "generated_at": "2026-05-06T09:31:03.971992Z",
+  "runs": [
+    {
+      "branch": "feature/perf-ci",
+      "branch_kind": "feature",
+      "branch_slug": "feature-perf-ci",
+      "commit": "d6a9270046b9cec4ef253be6887382eac4562dd2",
+      "mode": "heap-trace",
+      "path": "runs/feature-perf-ci/2026/03/10/d6a9270046b9-local-examples-basic-heap-trace.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-03-10T17:43:01Z",
+      "workload": "examples/basic"
+    },
+    {
+      "branch": "feature/perf-ci",
+      "branch_kind": "feature",
+      "branch_slug": "feature-perf-ci",
+      "commit": "d6a9270046b9cec4ef253be6887382eac4562dd2",
+      "mode": "heap-trace",
+      "path": "runs/feature-perf-ci/2026/03/11/d6a9270046b9-local-examples-basic-heap-trace.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-03-11T20:57:24Z",
+      "workload": "examples/basic"
+    },
+    {
+      "branch": "feature/perf-ci",
+      "branch_kind": "feature",
+      "branch_slug": "feature-perf-ci",
+      "commit": "d6a9270046b9cec4ef253be6887382eac4562dd2",
+      "mode": "heap-trace",
+      "path": "runs/feature-perf-ci/2026/03/12/d6a9270046b9-local-examples-basic-heap-trace.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-03-12T09:59:46Z",
+      "workload": "examples/basic"
+    },
+    {
+      "branch": "feature/lpfx",
+      "branch_kind": "feature",
+      "branch_slug": "feature-lpfx",
+      "commit": "d17cbf1907abe36d0207fb45404bc1e24834c148",
+      "mode": "heap-trace",
+      "path": "runs/feature-lpfx/2026/04/09/d17cbf1907ab-local-examples-mem-profile-heap-trace.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-04-09T22:27:40Z",
+      "workload": "examples/mem/profile"
+    },
+    {
+      "branch": "feature/lpfx",
+      "branch_kind": "feature",
+      "branch_slug": "feature-lpfx",
+      "commit": "d17cbf1907abe36d0207fb45404bc1e24834c148",
+      "mode": "heap-trace",
+      "path": "runs/feature-lpfx/2026/04/10/d17cbf1907ab-local-examples-mem-profile-heap-trace.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-04-10T00:27:31Z",
+      "workload": "examples/mem/profile"
+    },
+    {
+      "branch": "feature/perf-ci",
+      "branch_kind": "feature",
+      "branch_slug": "feature-perf-ci",
+      "commit": "d6a9270046b9cec4ef253be6887382eac4562dd2",
+      "mode": "heap-trace",
+      "path": "runs/feature-perf-ci/2026/04/10/d6a9270046b9-local-examples-mem-profile-heap-trace.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-04-10T00:29:03Z",
+      "workload": "examples/mem/profile"
+    },
+    {
+      "branch": "feature/lpfx",
+      "branch_kind": "feature",
+      "branch_slug": "feature-lpfx",
+      "commit": "d17cbf1907abe36d0207fb45404bc1e24834c148",
+      "mode": "heap-trace",
+      "path": "runs/feature-lpfx/2026/04/14/d17cbf1907ab-local-examples-mem-profile-heap-trace.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-04-14T17:59:27Z",
+      "workload": "examples/mem/profile"
+    },
+    {
+      "branch": "feature/domain",
+      "branch_kind": "feature",
+      "branch_slug": "feature-domain",
+      "commit": "a740696913b9c76f32f1b483ec4cbb705f2d7bad",
+      "mode": "heap-trace",
+      "path": "runs/feature-domain/2026/04/19/a740696913b9-local-examples-basic-heap-trace.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-04-19T13:29:01Z",
+      "workload": "examples/basic"
+    },
+    {
+      "branch": "feature/domain",
+      "branch_kind": "feature",
+      "branch_slug": "feature-domain",
+      "commit": "a740696913b9c76f32f1b483ec4cbb705f2d7bad",
+      "mode": "steady-render",
+      "path": "runs/feature-domain/2026/04/20/a740696913b9-local-examples-basic-steady-render.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-04-20T16:37:10.291574Z",
+      "workload": "examples/basic"
+    },
+    {
+      "branch": "feature/emu-perf-psrdnoise2-q32",
+      "branch_kind": "feature",
+      "branch_slug": "feature-emu-perf-psrdnoise2-q32",
+      "commit": "7231b98016666457d43d3e4643bb11c217af3c7f",
+      "mode": "steady-render",
+      "path": "runs/feature-emu-perf-psrdnoise2-q32/2026/04/20/7231b9801666-local-examples-perf-fastmath-steady-render.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-04-20T18:23:18.060062Z",
+      "workload": "examples/perf/fastmath"
+    },
+    {
+      "branch": "feature/perf-ci",
+      "branch_kind": "feature",
+      "branch_slug": "feature-perf-ci",
+      "commit": "d6a9270046b9cec4ef253be6887382eac4562dd2",
+      "mode": "steady-render",
+      "path": "runs/feature-perf-ci/2026/04/20/d6a9270046b9-local-examples-perf-fastmath-steady-render.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-04-20T18:49:50.256422Z",
+      "workload": "examples/perf/fastmath"
+    },
+    {
+      "branch": "feature/domain",
+      "branch_kind": "feature",
+      "branch_slug": "feature-domain",
+      "commit": "a740696913b9c76f32f1b483ec4cbb705f2d7bad",
+      "mode": "steady-render",
+      "path": "runs/feature-domain/2026/04/20/a740696913b9-local-examples-perf-fastmath-steady-render.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-04-20T18:55:39.587421Z",
+      "workload": "examples/perf/fastmath"
+    },
+    {
+      "branch": "feature/emu-perf-psrdnoise2-q32",
+      "branch_kind": "feature",
+      "branch_slug": "feature-emu-perf-psrdnoise2-q32",
+      "commit": "7231b98016666457d43d3e4643bb11c217af3c7f",
+      "mode": "steady-render",
+      "path": "runs/feature-emu-perf-psrdnoise2-q32/2026/04/28/7231b9801666-local-examples-perf-fastmath-steady-render.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-04-28T23:42:17.596262Z",
+      "workload": "examples/perf/fastmath"
+    },
+    {
+      "branch": "feature/domain",
+      "branch_kind": "feature",
+      "branch_slug": "feature-domain",
+      "commit": "a740696913b9c76f32f1b483ec4cbb705f2d7bad",
+      "mode": "steady-render",
+      "path": "runs/feature-domain/2026/05/01/a740696913b9-local-examples-perf-fastmath-steady-render.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-05-01T23:58:14.920143Z",
+      "workload": "examples/perf/fastmath"
+    },
+    {
+      "branch": "feature/perf-ci",
+      "branch_kind": "feature",
+      "branch_slug": "feature-perf-ci",
+      "commit": "d6a9270046b9cec4ef253be6887382eac4562dd2",
+      "mode": "heap-trace",
+      "path": "runs/feature-perf-ci/2026/05/02/d6a9270046b9-local-examples-basic-heap-trace.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-05-02T12:34:58Z",
+      "workload": "examples/basic"
+    },
+    {
+      "branch": "feature/perf-ci",
+      "branch_kind": "feature",
+      "branch_slug": "feature-perf-ci",
+      "commit": "d6a9270046b9cec4ef253be6887382eac4562dd2",
+      "mode": "compile",
+      "path": "runs/feature-perf-ci/2026/05/02/d6a9270046b9-local-examples-basic-compile.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-05-02T19:32:05.367255Z",
+      "workload": "examples/basic"
+    },
+    {
+      "branch": "feature/perf-ci",
+      "branch_kind": "feature",
+      "branch_slug": "feature-perf-ci",
+      "commit": "d6a9270046b9cec4ef253be6887382eac4562dd2",
+      "mode": "steady-render",
+      "path": "runs/feature-perf-ci/2026/05/03/d6a9270046b9-local-examples-basic3-steady-render.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-05-03T18:38:24.982223Z",
+      "workload": "examples/basic3"
+    },
+    {
+      "branch": "feature/perf-ci",
+      "branch_kind": "feature",
+      "branch_slug": "feature-perf-ci",
+      "commit": "d6a9270046b9cec4ef253be6887382eac4562dd2",
+      "mode": "steady-render",
+      "path": "runs/feature-perf-ci/2026/05/03/d6a9270046b9-local-examples-basic-steady-render.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-05-03T19:52:33.287665Z",
+      "workload": "examples/basic"
+    },
+    {
+      "branch": "feature/domain",
+      "branch_kind": "feature",
+      "branch_slug": "feature-domain",
+      "commit": "a740696913b9c76f32f1b483ec4cbb705f2d7bad",
+      "mode": "steady-render",
+      "path": "runs/feature-domain/2026/05/03/a740696913b9-local-examples-basic-steady-render.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-05-03T20:02:02.465415Z",
+      "workload": "examples/basic"
+    },
+    {
+      "branch": "feature/domain",
+      "branch_kind": "feature",
+      "branch_slug": "feature-domain",
+      "commit": "a740696913b9c76f32f1b483ec4cbb705f2d7bad",
+      "mode": "steady-render",
+      "path": "runs/feature-domain/2026/05/03/a740696913b9-local-examples-rocaille-steady-render.json",
+      "source_kind": "local-backfill",
+      "timestamp": "2026-05-03T21:35:53.196342Z",
+      "workload": "examples/rocaille"
+    }
+  ],
   "schema_version": 1
 }

@@ -1,5 +1,38 @@
 {
-  "branches": [],
-  "generated_at": null,
+  "branches": [
+    {
+      "kind": "feature",
+      "latest": "latest/feature-domain.json",
+      "latest_timestamp": "2026-05-03T21:35:53.196342Z",
+      "name": "feature/domain",
+      "runs": 6,
+      "slug": "feature-domain"
+    },
+    {
+      "kind": "feature",
+      "latest": "latest/feature-perf-ci.json",
+      "latest_timestamp": "2026-05-03T19:52:33.287665Z",
+      "name": "feature/perf-ci",
+      "runs": 9,
+      "slug": "feature-perf-ci"
+    },
+    {
+      "kind": "feature",
+      "latest": "latest/feature-emu-perf-psrdnoise2-q32.json",
+      "latest_timestamp": "2026-04-28T23:42:17.596262Z",
+      "name": "feature/emu-perf-psrdnoise2-q32",
+      "runs": 2,
+      "slug": "feature-emu-perf-psrdnoise2-q32"
+    },
+    {
+      "kind": "feature",
+      "latest": "latest/feature-lpfx.json",
+      "latest_timestamp": "2026-04-14T17:59:27Z",
+      "name": "feature/lpfx",
+      "runs": 3,
+      "slug": "feature-lpfx"
+    }
+  ],
+  "generated_at": "2026-05-06T09:31:03.971992Z",
   "schema_version": 1
 }
