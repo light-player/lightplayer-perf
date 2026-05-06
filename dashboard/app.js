@@ -93,6 +93,15 @@ const METRIC_CATALOG = {
 };
 
 const $ = (id) => document.getElementById(id);
+const hasDom = typeof window !== "undefined" && typeof document !== "undefined";
+
+function requiredElement(id) {
+  const element = $(id);
+  if (!element) {
+    throw new Error(`dashboard element missing: #${id}`);
+  }
+  return element;
+}
 
 async function main() {
   state.index = await fetchJson("../index.json");
@@ -135,38 +144,36 @@ function populateControls() {
   const defaultSeries = preferredSeries();
 
   fillSelect(
-    $("series"),
+    requiredElement("series"),
     state.seriesList.map((series) => series.key),
     defaultSeries?.key || state.seriesList[0]?.key || "",
     (key) => seriesLabel(state.seriesList.find((series) => series.key === key)),
   );
   fillMetricSelect(defaultSeries);
   fillSelect(
-    $("branch"),
+    requiredElement("branch"),
     branches.map((branch) => branch.slug),
     "main",
     (slug) => branches.find((branch) => branch.slug === slug)?.name || slug,
   );
 
-  $("series").addEventListener("change", async () => {
+  requiredElement("series").addEventListener("change", async () => {
     fillMetricSelect(selectedSeries());
     await render();
   });
-  $("metric").addEventListener("change", render);
-  $("branch").addEventListener("change", render);
+  requiredElement("metric").addEventListener("change", render);
+  requiredElement("branch").addEventListener("change", render);
 }
 
 function preferredSeries() {
-  return state.seriesList
+  return choosePreferredSeries(state.seriesList, state.runs);
+}
+
+function choosePreferredSeries(seriesList, runs) {
+  return seriesList
     .map((series) => ({
       series,
-      count: state.runs.filter(
-        (run) =>
-          run.branch_slug === "main" &&
-          run.workload === series.workload &&
-          run.mode === series.mode &&
-          inferKind(run) === series.kind,
-      ).length,
+      count: runs.filter((run) => run.branch_slug === "main" && seriesMatchesRun(series, run)).length,
     }))
     .sort((a, b) => b.count - a.count || seriesLabel(a.series).localeCompare(seriesLabel(b.series)))[0]?.series;
 }
@@ -174,7 +181,7 @@ function preferredSeries() {
 function fillMetricSelect(series) {
   const metrics = metricsForSeries(series);
   fillSelect(
-    $("metric"),
+    requiredElement("metric"),
     metrics.map((metric) => metric.key),
     metrics[0]?.key || "",
     (key) => metrics.find((metric) => metric.key === key)?.label || key,
@@ -193,11 +200,11 @@ function fillSelect(select, values, selected, label = (value) => value) {
 }
 
 function selectedSeries() {
-  return state.seriesList.find((series) => series.key === $("series").value) || null;
+  return state.seriesList.find((series) => series.key === requiredElement("series").value) || null;
 }
 
 function selectedMetric(series) {
-  return metricsForSeries(series).find((metric) => metric.key === $("metric").value) || metricsForSeries(series)[0] || null;
+  return metricsForSeries(series).find((metric) => metric.key === requiredElement("metric").value) || metricsForSeries(series)[0] || null;
 }
 
 function metricsForSeries(series) {
@@ -207,23 +214,25 @@ function metricsForSeries(series) {
 async function render() {
   const series = selectedSeries();
   const metric = selectedMetric(series);
-  const branchSlug = $("branch").value || "main";
+  const branchSlug = requiredElement("branch").value || "main";
   if (!series || !metric) return;
 
-  const scopedRuns = state.runs.filter(
-    (run) => run.workload === series.workload && run.mode === series.mode && inferKind(run) === series.kind,
-  );
+  const scopedRuns = state.runs.filter((run) => seriesMatchesRun(series, run));
   const mainRuns = scopedRuns.filter((run) => run.branch_slug === "main");
   const selectedRuns = scopedRuns.filter((run) => run.branch_slug === branchSlug);
 
   renderTracking(series, metric, mainRuns.length);
   renderMetricDetail(metric);
-  $("chart-title").textContent = `Main Branch Trend - ${metric.shortLabel}`;
-  $("detail-title").textContent = detailTitle(metric);
+  requiredElement("chart-title").textContent = `Main Branch Trend - ${metric.shortLabel}`;
+  requiredElement("detail-title").textContent = detailTitle(metric);
 
-  drawChart($("main-chart"), await loadSeries(mainRuns, metric), metric);
+  drawChart(requiredElement("main-chart"), await loadSeries(mainRuns, metric), metric);
   renderFeatures(scopedRuns, metric);
   renderLatest(await latestMetric(selectedRuns), metric);
+}
+
+function seriesMatchesRun(series, run) {
+  return run.workload === series.workload && run.mode === series.mode && inferKind(run) === series.kind;
 }
 
 async function loadSeries(runs, metric) {
@@ -252,7 +261,7 @@ async function loadMetric(path) {
 }
 
 function renderTracking(series, metric, sampleCount) {
-  const target = $("tracking");
+  const target = requiredElement("tracking");
   target.innerHTML = "";
   const rows = [
     ["Example", series.workload],
@@ -268,7 +277,7 @@ function renderTracking(series, metric, sampleCount) {
 }
 
 function renderMetricDetail(metric) {
-  const target = $("metric-detail");
+  const target = requiredElement("metric-detail");
   target.innerHTML = "";
   const rows = [
     ["Meaning", metric.description],
@@ -353,7 +362,7 @@ function drawChart(canvas, series, metric) {
 }
 
 function renderFeatures(scopedRuns) {
-  const target = $("feature-list");
+  const target = requiredElement("feature-list");
   const branches = (state.index.branches || [])
     .filter((branch) => branch.kind === "feature")
     .map((branch) => ({
@@ -374,7 +383,7 @@ function renderFeatures(scopedRuns) {
     row.className = "feature";
     row.innerHTML = `<strong>${escapeHtml(branch.name)}</strong><span>${branch.runsForSeries} sample(s)</span>`;
     row.addEventListener("click", () => {
-      $("branch").value = branch.slug;
+      requiredElement("branch").value = branch.slug;
       render();
     });
     target.append(row);
@@ -382,8 +391,8 @@ function renderFeatures(scopedRuns) {
 }
 
 function renderLatest(metric, selectedMetricDef) {
-  const facts = $("latest-run");
-  const detailBody = $("detail-body");
+  const facts = requiredElement("latest-run");
+  const detailBody = requiredElement("detail-body");
   facts.innerHTML = "";
   detailBody.innerHTML = "";
 
@@ -408,10 +417,10 @@ function renderLatest(metric, selectedMetricDef) {
 }
 
 function renderDetailTable(metric, metricDef) {
-  const body = $("detail-body");
-  const col1 = $("detail-col-1");
-  const col2 = $("detail-col-2");
-  const col3 = $("detail-col-3");
+  const body = requiredElement("detail-body");
+  const col1 = requiredElement("detail-col-1");
+  const col2 = requiredElement("detail-col-2");
+  const col3 = requiredElement("detail-col-3");
 
   if (metricDef.detailKind === "topSelf") {
     col1.textContent = "Function";
@@ -488,6 +497,29 @@ function escapeHtml(value) {
   }[char]));
 }
 
-main().catch((error) => {
-  document.body.innerHTML = `<main class="shell"><section class="panel"><h1>Dashboard failed</h1><pre>${escapeHtml(error.stack || error.message)}</pre></section></main>`;
-});
+const dashboardTestApi = {
+  METRIC_CATALOG,
+  buildSeriesList,
+  choosePreferredSeries,
+  detailTitle,
+  escapeHtml,
+  formatValue,
+  inferKind,
+  metricsForSeries,
+  seriesLabel,
+  seriesMatchesRun,
+};
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = dashboardTestApi;
+}
+
+if (typeof globalThis !== "undefined") {
+  globalThis.__lightplayerPerfDashboard = dashboardTestApi;
+}
+
+if (hasDom) {
+  main().catch((error) => {
+    document.body.innerHTML = `<main class="shell"><section class="panel"><h1>Dashboard failed</h1><pre>${escapeHtml(error.stack || error.message)}</pre></section></main>`;
+  });
+}

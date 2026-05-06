@@ -23,6 +23,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Validate dashboard
+        run: |
+          node --check dashboard/app.js
+          node --test dashboard/app.test.cjs
+          node dashboard/validate.cjs
+
       - name: Prepare site
         run: |
           mkdir -p _site
