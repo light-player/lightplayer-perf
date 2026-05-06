@@ -64,7 +64,7 @@ h2 {
 }
 
 h1 {
-  font-size: clamp(1.9rem, 4vw, 3.3rem);
+  font-size: clamp(1.3rem, 2.3vw, 2rem);
   line-height: 1;
 }
 
@@ -137,6 +137,41 @@ select:focus {
   border: 1px solid #1d2a36;
   border-radius: 7px;
   background: #090d12;
+}
+
+.chart-wrap {
+  position: relative;
+}
+
+.chart-tooltip {
+  position: absolute;
+  z-index: 2;
+  min-width: 180px;
+  max-width: 260px;
+  border: 1px solid rgba(159, 179, 255, 0.3);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #eef6ff;
+  background: rgba(6, 10, 15, 0.96);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.chart-tooltip strong,
+.chart-tooltip span {
+  display: block;
+}
+
+.chart-tooltip strong {
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.chart-tooltip span {
+  color: var(--ink);
+  font-size: 0.78rem;
+  line-height: 1.45;
 }
 
 .feature-list {

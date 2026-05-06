@@ -5,6 +5,17 @@ const state = {
   seriesList: [],
 };
 
+const EXECUTION_METRIC = {
+  key: "execution.cycles_used",
+  label: "Execution cycles",
+  shortLabel: "Execution cycles",
+  unit: "cycles",
+  direction: "Lower is better",
+  description: "Total measured execution cycles recorded for the run. This is wall-clock work in target-cycle terms, not just attributed profiler samples.",
+  getter: (metric) => metric.cycles_used ?? null,
+  detailKind: "execution",
+};
+
 const METRIC_CATALOG = {
   profile: [
     {
@@ -220,13 +231,20 @@ async function render() {
   const scopedRuns = state.runs.filter((run) => seriesMatchesRun(series, run));
   const mainRuns = scopedRuns.filter((run) => run.branch_slug === "main");
   const selectedRuns = scopedRuns.filter((run) => run.branch_slug === branchSlug);
+  const mainSeries = await loadSeries(mainRuns, metric);
+  const executionSeries = await loadSeries(mainRuns, EXECUTION_METRIC);
 
   renderTracking(series, metric, mainRuns.length);
   renderMetricDetail(metric);
+  renderExecutionDetail(series, executionSeries.length);
   requiredElement("chart-title").textContent = `Main Branch Trend - ${metric.shortLabel}`;
+  requiredElement("execution-chart-title").textContent = `Main Branch Trend - ${EXECUTION_METRIC.shortLabel}`;
   requiredElement("detail-title").textContent = detailTitle(metric);
 
-  drawChart(requiredElement("main-chart"), await loadSeries(mainRuns, metric), metric);
+  drawChart(requiredElement("main-chart"), requiredElement("main-chart-tooltip"), mainSeries, metric);
+  drawChart(requiredElement("execution-chart"), requiredElement("execution-chart-tooltip"), executionSeries, EXECUTION_METRIC, {
+    emptyMessage: series.kind === "heap-trace" ? "execution-cycle data is only available for profiled runs" : "no execution-cycle samples for selected series",
+  });
   renderFeatures(scopedRuns, metric);
   renderLatest(await latestMetric(selectedRuns), metric);
 }
@@ -238,10 +256,11 @@ function seriesMatchesRun(series, run) {
 async function loadSeries(runs, metric) {
   const loaded = await Promise.all(runs.map((run) => loadMetric(run.path)));
   return loaded
-    .map((data) => ({
+    .map((data, index) => ({
       timestamp: data.timestamp || "",
       value: metric.getter(data),
       data,
+      run: runs[index],
     }))
     .filter((point) => point.value !== null && point.value !== undefined)
     .sort((a, b) => String(a.timestamp).localeCompare(String(b.timestamp)));
@@ -289,6 +308,21 @@ function renderMetricDetail(metric) {
   }
 }
 
+function renderExecutionDetail(series, sampleCount) {
+  const target = requiredElement("execution-detail");
+  target.innerHTML = "";
+  const rows = [
+    ["Metric", EXECUTION_METRIC.label],
+    ["Units", EXECUTION_METRIC.unit],
+    ["Meaning", EXECUTION_METRIC.description],
+    ["Availability", series.kind === "heap-trace" ? "Not emitted for heap traces" : "Recorded on profiled runs"],
+    ["Main samples", sampleCount],
+  ];
+  for (const [key, value] of rows) {
+    appendFact(target, key, value);
+  }
+}
+
 function appendFact(target, key, value) {
   const dt = document.createElement("dt");
   const dd = document.createElement("dd");
@@ -297,22 +331,27 @@ function appendFact(target, key, value) {
   target.append(dt, dd);
 }
 
-function drawChart(canvas, series, metric) {
+function drawChart(canvas, tooltip, series, metric, options = {}) {
   const ctx = canvas.getContext("2d");
   const width = canvas.width;
   const height = canvas.height;
   ctx.clearRect(0, 0, width, height);
   ctx.fillStyle = "#090d12";
   ctx.fillRect(0, 0, width, height);
+  hideTooltip(tooltip);
+
+  const emptyMessage = options.emptyMessage || "no samples for selected series";
 
   if (!series.length) {
     ctx.fillStyle = "#7f8b98";
     ctx.font = "20px IBM Plex Mono, Menlo, monospace";
-    ctx.fillText("no main-branch samples for selected series", 36, height / 2);
+    ctx.fillText(emptyMessage, 36, height / 2);
+    canvas.onmousemove = null;
+    canvas.onmouseleave = null;
     return;
   }
 
-  const padding = 52;
+  const padding = { top: 28, right: 24, bottom: 58, left: 100 };
   const values = series.map((point) => point.value);
   const min = Math.min(...values);
   const max = Math.max(...values);
@@ -320,45 +359,75 @@ function drawChart(canvas, series, metric) {
   const x = (i) =>
     series.length === 1
       ? width / 2
-      : padding + (i / Math.max(1, series.length - 1)) * (width - padding * 2);
-  const y = (value) => height - padding - ((value - min) / span) * (height - padding * 2);
+      : padding.left + (i / Math.max(1, series.length - 1)) * (width - padding.left - padding.right);
+  const y = (value) => height - padding.bottom - ((value - min) / span) * (height - padding.top - padding.bottom);
+  const chartBottom = height - padding.bottom;
+  const points = series.map((point, index) => ({ ...point, x: x(index), y: y(point.value) }));
 
   ctx.strokeStyle = "#1f2d39";
   ctx.lineWidth = 1;
   for (let i = 0; i < 4; i++) {
-    const yy = padding + i * ((height - padding * 2) / 3);
+    const yy = padding.top + i * ((height - padding.top - padding.bottom) / 3);
     ctx.beginPath();
-    ctx.moveTo(padding, yy);
-    ctx.lineTo(width - padding, yy);
+    ctx.moveTo(padding.left, yy);
+    ctx.lineTo(width - padding.right, yy);
     ctx.stroke();
-    const sampleValue = Math.round(max - ((max - min) * i) / 3);
+    const sampleValue = max - ((max - min) * i) / 3;
     ctx.fillStyle = "#6f7d8d";
     ctx.font = "11px IBM Plex Mono, Menlo, monospace";
-    ctx.fillText(formatValue(sampleValue, metric.unit), 8, yy + 4);
+    ctx.fillText(formatCompactValue(sampleValue, metric.unit), 10, yy + 4);
+  }
+
+  ctx.beginPath();
+  ctx.moveTo(padding.left, chartBottom);
+  ctx.lineTo(width - padding.right, chartBottom);
+  ctx.stroke();
+
+  ctx.fillStyle = "#6f7d8d";
+  ctx.font = "11px IBM Plex Mono, Menlo, monospace";
+  for (const index of chooseTickIndexes(points.length)) {
+    const point = points[index];
+    ctx.beginPath();
+    ctx.moveTo(point.x, chartBottom);
+    ctx.lineTo(point.x, chartBottom + 6);
+    ctx.stroke();
+    ctx.save();
+    ctx.translate(point.x, chartBottom + 18);
+    ctx.rotate(-0.32);
+    ctx.fillText(formatTimestampLabel(point.timestamp), -12, 0);
+    ctx.restore();
   }
 
   ctx.strokeStyle = "#5eead4";
   ctx.lineWidth = 2;
   ctx.beginPath();
-  series.forEach((point, i) => {
-    const xx = x(i);
-    const yy = y(point.value);
-    if (i === 0) ctx.moveTo(xx, yy);
-    else ctx.lineTo(xx, yy);
+  points.forEach((point, index) => {
+    if (index === 0) ctx.moveTo(point.x, point.y);
+    else ctx.lineTo(point.x, point.y);
   });
   ctx.stroke();
 
   ctx.fillStyle = "#9fb3ff";
-  series.forEach((point, i) => {
+  points.forEach((point) => {
     ctx.beginPath();
-    ctx.arc(x(i), y(point.value), 4, 0, Math.PI * 2);
+    ctx.arc(point.x, point.y, 4, 0, Math.PI * 2);
     ctx.fill();
   });
 
   ctx.fillStyle = "#7f8b98";
   ctx.font = "12px IBM Plex Mono, Menlo, monospace";
-  ctx.fillText(`${metric.shortLabel} (${metric.unit})`, padding, 18);
-  ctx.fillText(`${series.length} sample(s)`, padding, height - 14);
+  ctx.fillText(`${metric.shortLabel} (${metric.unit})`, padding.left, 18);
+  ctx.fillText(`${series.length} sample(s)`, padding.left, height - 12);
+
+  canvas.onmousemove = (event) => {
+    const point = nearestPoint(canvas, points, event);
+    if (!point || Math.abs(point.x - scaleOffsetX(canvas, event)) > 20 || Math.abs(point.y - scaleOffsetY(canvas, event)) > 20) {
+      hideTooltip(tooltip);
+      return;
+    }
+    showTooltip(canvas, tooltip, point, metric);
+  };
+  canvas.onmouseleave = () => hideTooltip(tooltip);
 }
 
 function renderFeatures(scopedRuns) {
@@ -471,6 +540,7 @@ function renderDetailTable(metric, metricDef) {
 function detailTitle(metric) {
   if (metric.detailKind === "topSelf") return "Top Self Cycles";
   if (metric.detailKind === "frames") return "Frame Statistics";
+  if (metric.detailKind === "execution") return "Execution Statistics";
   return "Memory Statistics";
 }
 
@@ -483,8 +553,87 @@ function formatValue(value, unit) {
   return `${Number(value).toLocaleString()} ${unit}`;
 }
 
-function unique(values) {
-  return [...new Set(values)].sort();
+function formatCompactValue(value, unit) {
+  if (value === null || value === undefined) return "n/a";
+  return `${Math.round(Number(value)).toLocaleString()} ${unit}`;
+}
+
+function formatTimestampLabel(timestamp) {
+  if (!timestamp) return "n/a";
+  const date = new Date(timestamp);
+  if (Number.isNaN(date.getTime())) return String(timestamp);
+  return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", timeZone: "UTC" }).format(date);
+}
+
+function formatTimestampLong(timestamp) {
+  if (!timestamp) return "n/a";
+  const date = new Date(timestamp);
+  if (Number.isNaN(date.getTime())) return String(timestamp);
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "UTC",
+  }).format(date);
+}
+
+function chooseTickIndexes(length) {
+  if (length <= 1) return [0];
+  if (length <= 4) return Array.from({ length }, (_, index) => index);
+  return [...new Set([0, Math.floor((length - 1) / 3), Math.floor(((length - 1) * 2) / 3), length - 1])];
+}
+
+function scaleOffsetX(canvas, event) {
+  const rect = canvas.getBoundingClientRect();
+  return (event.clientX - rect.left) * (canvas.width / rect.width);
+}
+
+function scaleOffsetY(canvas, event) {
+  const rect = canvas.getBoundingClientRect();
+  return (event.clientY - rect.top) * (canvas.height / rect.height);
+}
+
+function nearestPoint(canvas, points, event) {
+  const x = scaleOffsetX(canvas, event);
+  const y = scaleOffsetY(canvas, event);
+  let best = null;
+  let distance = Number.POSITIVE_INFINITY;
+  for (const point of points) {
+    const candidate = Math.hypot(point.x - x, point.y - y);
+    if (candidate < distance) {
+      best = point;
+      distance = candidate;
+    }
+  }
+  return best;
+}
+
+function showTooltip(canvas, tooltip, point, metric) {
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = rect.width / canvas.width;
+  const scaleY = rect.height / canvas.height;
+  const left = Math.min(rect.width - 230, Math.max(12, point.x * scaleX + 14));
+  const top = Math.min(rect.height - 116, Math.max(12, point.y * scaleY - 18));
+  tooltip.innerHTML = [
+    `<strong>${escapeHtml(formatTimestampLong(point.timestamp))}</strong>`,
+    `<span>${escapeHtml(metric.label)}: ${escapeHtml(formatValue(point.value, metric.unit))}</span>`,
+    `<span>Commit: ${escapeHtml(shortCommit(point.data.commit))}</span>`,
+    `<span>Workload: ${escapeHtml(point.data.workload || "n/a")}</span>`,
+  ].join("");
+  tooltip.style.left = `${left}px`;
+  tooltip.style.top = `${top}px`;
+  tooltip.hidden = false;
+}
+
+function hideTooltip(tooltip) {
+  tooltip.hidden = true;
+  tooltip.innerHTML = "";
+}
+
+function shortCommit(commit) {
+  return commit ? String(commit).slice(0, 12) : "n/a";
 }
 
 function escapeHtml(value) {
@@ -498,11 +647,15 @@ function escapeHtml(value) {
 }
 
 const dashboardTestApi = {
+  chooseTickIndexes,
   METRIC_CATALOG,
+  EXECUTION_METRIC,
   buildSeriesList,
   choosePreferredSeries,
   detailTitle,
   escapeHtml,
+  formatCompactValue,
+  formatTimestampLabel,
   formatValue,
   inferKind,
   metricsForSeries,

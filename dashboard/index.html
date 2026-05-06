@@ -42,11 +42,28 @@
       <section class="grid">
         <article class="panel chart-card">
           <h2 id="chart-title">Main Branch Trend</h2>
-          <canvas id="main-chart" width="960" height="320"></canvas>
+          <div class="chart-wrap">
+            <canvas id="main-chart" width="960" height="320"></canvas>
+            <div id="main-chart-tooltip" class="chart-tooltip" hidden></div>
+          </div>
         </article>
         <article class="panel">
           <h2>Recent Feature Branches</h2>
           <div id="feature-list" class="feature-list"></div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="panel chart-card">
+          <h2 id="execution-chart-title">Execution Cycles</h2>
+          <div class="chart-wrap">
+            <canvas id="execution-chart" width="960" height="320"></canvas>
+            <div id="execution-chart-tooltip" class="chart-tooltip" hidden></div>
+          </div>
+        </article>
+        <article class="panel">
+          <h2>Execution Metric</h2>
+          <dl id="execution-detail" class="facts"></dl>
         </article>
       </section>
 

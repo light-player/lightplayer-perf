@@ -34,8 +34,24 @@ test("formatValue includes units and separators", () => {
   assert.equal(dashboard.formatValue(null, "cycles"), "n/a");
 });
 
+test("formatTimestampLabel yields compact axis labels", () => {
+  assert.equal(dashboard.formatTimestampLabel("2026-04-20T05:19:33.880270+00:00"), "Apr 20");
+});
+
+test("chooseTickIndexes keeps endpoints and intermediate labels", () => {
+  assert.deepEqual(dashboard.chooseTickIndexes(1), [0]);
+  assert.deepEqual(dashboard.chooseTickIndexes(4), [0, 1, 2, 3]);
+  assert.deepEqual(dashboard.chooseTickIndexes(8), [0, 2, 4, 7]);
+});
+
+test("execution metric reads cycles_used", () => {
+  assert.equal(dashboard.EXECUTION_METRIC.getter({ cycles_used: 110309115 }), 110309115);
+  assert.equal(dashboard.EXECUTION_METRIC.getter({}), null);
+});
+
 test("detailTitle matches metric detail kind", () => {
   assert.equal(dashboard.detailTitle({ detailKind: "topSelf" }), "Top Self Cycles");
   assert.equal(dashboard.detailTitle({ detailKind: "frames" }), "Frame Statistics");
+  assert.equal(dashboard.detailTitle({ detailKind: "execution" }), "Execution Statistics");
   assert.equal(dashboard.detailTitle({ detailKind: "memory" }), "Memory Statistics");
 });
