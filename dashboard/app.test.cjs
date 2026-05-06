@@ -30,8 +30,14 @@ test("choosePreferredSeries prefers main-backed series", () => {
 });
 
 test("formatValue includes units and separators", () => {
-  assert.equal(dashboard.formatValue(1234567, "cycles"), "1,234,567 cycles");
+  assert.equal(dashboard.formatValue(1234567, "cycles"), "1.2M cycles");
   assert.equal(dashboard.formatValue(null, "cycles"), "n/a");
+});
+
+test("formatAbbreviatedNumber scales by magnitude", () => {
+  assert.equal(dashboard.formatAbbreviatedNumber(93750992), "93M");
+  assert.equal(dashboard.formatAbbreviatedNumber(1152304), "1.2M");
+  assert.equal(dashboard.formatAbbreviatedNumber(980), "980");
 });
 
 test("formatTimestampLabel yields compact axis labels", () => {
@@ -47,6 +53,16 @@ test("chooseTickIndexes keeps endpoints and intermediate labels", () => {
 test("execution metric reads cycles_used", () => {
   assert.equal(dashboard.EXECUTION_METRIC.getter({ cycles_used: 110309115 }), 110309115);
   assert.equal(dashboard.EXECUTION_METRIC.getter({}), null);
+});
+
+test("compactSymbolName keeps the readable tail", () => {
+  assert.equal(dashboard.compactSymbolName("FixtureRuntime::render"), "FixtureRuntime::render");
+  assert.equal(dashboard.compactSymbolName("a::b::FixtureRuntime::render"), "FixtureRuntime::render");
+});
+
+test("selectRequestedValue falls back when requested value is invalid", () => {
+  assert.equal(dashboard.selectRequestedValue(["a", "b"], "b", "a"), "b");
+  assert.equal(dashboard.selectRequestedValue(["a", "b"], "c", "a"), "a");
 });
 
 test("detailTitle matches metric detail kind", () => {

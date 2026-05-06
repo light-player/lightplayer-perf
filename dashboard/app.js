@@ -153,18 +153,30 @@ function inferKind(run) {
 function populateControls() {
   const branches = state.index.branches || [];
   const defaultSeries = preferredSeries();
+  const requested = readUrlState();
+  const selectedSeriesKey = selectRequestedValue(
+    state.seriesList.map((series) => series.key),
+    requested.series,
+    defaultSeries?.key || state.seriesList[0]?.key || "",
+  );
+  const selectedSeriesValue = state.seriesList.find((series) => series.key === selectedSeriesKey) || defaultSeries;
+  const selectedBranchSlug = selectRequestedValue(
+    branches.map((branch) => branch.slug),
+    requested.branch,
+    "main",
+  );
 
   fillSelect(
     requiredElement("series"),
     state.seriesList.map((series) => series.key),
-    defaultSeries?.key || state.seriesList[0]?.key || "",
+    selectedSeriesKey,
     (key) => seriesLabel(state.seriesList.find((series) => series.key === key)),
   );
-  fillMetricSelect(defaultSeries);
+  fillMetricSelect(selectedSeriesValue, requested.metric);
   fillSelect(
     requiredElement("branch"),
     branches.map((branch) => branch.slug),
-    "main",
+    selectedBranchSlug,
     (slug) => branches.find((branch) => branch.slug === slug)?.name || slug,
   );
 
@@ -189,12 +201,17 @@ function choosePreferredSeries(seriesList, runs) {
     .sort((a, b) => b.count - a.count || seriesLabel(a.series).localeCompare(seriesLabel(b.series)))[0]?.series;
 }
 
-function fillMetricSelect(series) {
+function fillMetricSelect(series, requestedKey = null) {
   const metrics = metricsForSeries(series);
+  const selectedMetricKey = selectRequestedValue(
+    metrics.map((metric) => metric.key),
+    requestedKey,
+    metrics[0]?.key || "",
+  );
   fillSelect(
     requiredElement("metric"),
     metrics.map((metric) => metric.key),
-    metrics[0]?.key || "",
+    selectedMetricKey,
     (key) => metrics.find((metric) => metric.key === key)?.label || key,
   );
 }
@@ -227,6 +244,12 @@ async function render() {
   const metric = selectedMetric(series);
   const branchSlug = requiredElement("branch").value || "main";
   if (!series || !metric) return;
+
+  syncUrlState({
+    series: series.key,
+    metric: metric.key,
+    branch: branchSlug,
+  });
 
   const scopedRuns = state.runs.filter((run) => seriesMatchesRun(series, run));
   const mainRuns = scopedRuns.filter((run) => run.branch_slug === "main");
@@ -497,7 +520,7 @@ function renderDetailTable(metric, metricDef) {
     col3.textContent = "%";
     for (const row of metric.cpu?.top_self || []) {
       const tr = document.createElement("tr");
-      tr.innerHTML = `<td>${escapeHtml(row.name)}</td><td>${row.cycles}</td><td>${row.percent.toFixed(1)}%</td>`;
+      tr.innerHTML = `<td>${escapeHtml(compactSymbolName(row.name))}</td><td>${formatAbbreviatedNumber(row.cycles)}</td><td>${row.percent.toFixed(1)}%</td>`;
       body.append(tr);
     }
     return;
@@ -515,7 +538,7 @@ function renderDetailTable(metric, metricDef) {
     ];
     for (const [name, value, units] of rows) {
       const tr = document.createElement("tr");
-      tr.innerHTML = `<td>${name}</td><td>${value ?? "n/a"}</td><td>${units}</td>`;
+      tr.innerHTML = `<td>${name}</td><td>${value === null || value === undefined ? "n/a" : formatAbbreviatedNumber(value)}</td><td>${units}</td>`;
       body.append(tr);
     }
     return;
@@ -532,7 +555,7 @@ function renderDetailTable(metric, metricDef) {
   ];
   for (const [name, value, units] of rows) {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${name}</td><td>${value ?? "n/a"}</td><td>${units}</td>`;
+    tr.innerHTML = `<td>${name}</td><td>${value === null || value === undefined ? "n/a" : formatAbbreviatedNumber(value)}</td><td>${units}</td>`;
     body.append(tr);
   }
 }
@@ -550,12 +573,12 @@ function seriesLabel(series) {
 
 function formatValue(value, unit) {
   if (value === null || value === undefined) return "n/a";
-  return `${Number(value).toLocaleString()} ${unit}`;
+  return `${formatAbbreviatedNumber(value)} ${unit}`;
 }
 
 function formatCompactValue(value, unit) {
   if (value === null || value === undefined) return "n/a";
-  return `${Math.round(Number(value)).toLocaleString()} ${unit}`;
+  return `${formatAbbreviatedNumber(value)} ${unit}`;
 }
 
 function formatTimestampLabel(timestamp) {
@@ -618,7 +641,7 @@ function showTooltip(canvas, tooltip, point, metric) {
   const top = Math.min(rect.height - 116, Math.max(12, point.y * scaleY - 18));
   tooltip.innerHTML = [
     `<strong>${escapeHtml(formatTimestampLong(point.timestamp))}</strong>`,
-    `<span>${escapeHtml(metric.label)}: ${escapeHtml(formatValue(point.value, metric.unit))}</span>`,
+    `<span>${escapeHtml(metric.label)}: ${escapeHtml(formatValue(point.value, metric.unit))} (${escapeHtml(formatExactValue(point.value, metric.unit))})</span>`,
     `<span>Commit: ${escapeHtml(shortCommit(point.data.commit))}</span>`,
     `<span>Workload: ${escapeHtml(point.data.workload || "n/a")}</span>`,
   ].join("");
@@ -636,6 +659,69 @@ function shortCommit(commit) {
   return commit ? String(commit).slice(0, 12) : "n/a";
 }
 
+function compactSymbolName(name) {
+  if (!name) return "n/a";
+  const parts = String(name).split("::");
+  return parts.length >= 2 ? `${parts.at(-2)}::${parts.at(-1)}` : String(name);
+}
+
+function formatAbbreviatedNumber(value) {
+  if (value === null || value === undefined) return "n/a";
+  const number = Number(value);
+  if (!Number.isFinite(number)) return String(value);
+  const abs = Math.abs(number);
+  const sign = number < 0 ? "-" : "";
+  const scales = [
+    { limit: 1e12, suffix: "T" },
+    { limit: 1e9, suffix: "B" },
+    { limit: 1e6, suffix: "M" },
+    { limit: 1e3, suffix: "K" },
+  ];
+  for (const scale of scales) {
+    if (abs >= scale.limit) {
+      const scaled = abs / scale.limit;
+      const formatted = scaled >= 10 ? Math.floor(scaled).toString() : trimTrailingZero((Math.round(scaled * 10) / 10).toFixed(1));
+      return `${sign}${formatted}${scale.suffix}`;
+    }
+  }
+  return `${sign}${Math.round(abs).toLocaleString()}`;
+}
+
+function formatExactValue(value, unit) {
+  if (value === null || value === undefined) return "n/a";
+  return `${Number(value).toLocaleString()} ${unit}`;
+}
+
+function trimTrailingZero(value) {
+  return String(value).replace(/\.0$/, "");
+}
+
+function readUrlState() {
+  if (!hasDom) return {};
+  const params = new URLSearchParams(window.location.search);
+  return {
+    series: params.get("series"),
+    metric: params.get("metric"),
+    branch: params.get("branch"),
+  };
+}
+
+function syncUrlState(nextState) {
+  if (!hasDom) return;
+  const params = new URLSearchParams(window.location.search);
+  for (const [key, value] of Object.entries(nextState)) {
+    if (value) params.set(key, value);
+    else params.delete(key);
+  }
+  const nextUrl = `${window.location.pathname}?${params.toString()}`;
+  window.history.replaceState({}, "", nextUrl);
+}
+
+function selectRequestedValue(values, requested, fallback) {
+  if (requested && values.includes(requested)) return requested;
+  return fallback;
+}
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (char) => ({
     "&": "&amp;",
@@ -651,14 +737,18 @@ const dashboardTestApi = {
   METRIC_CATALOG,
   EXECUTION_METRIC,
   buildSeriesList,
+  compactSymbolName,
   choosePreferredSeries,
   detailTitle,
   escapeHtml,
+  formatAbbreviatedNumber,
   formatCompactValue,
+  formatExactValue,
   formatTimestampLabel,
   formatValue,
   inferKind,
   metricsForSeries,
+  selectRequestedValue,
   seriesLabel,
   seriesMatchesRun,
 };
