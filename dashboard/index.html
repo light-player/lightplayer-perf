@@ -15,8 +15,12 @@
 
       <section class="panel controls">
         <label>
-          Workload
-          <select id="workload"></select>
+          Series
+          <select id="series"></select>
+        </label>
+        <label>
+          Metric
+          <select id="metric"></select>
         </label>
         <label>
           Branch
@@ -24,9 +28,20 @@
         </label>
       </section>
 
+      <section class="grid meta-grid">
+        <article class="panel">
+          <h2>Tracking</h2>
+          <dl id="tracking" class="facts"></dl>
+        </article>
+        <article class="panel">
+          <h2>Metric Meaning</h2>
+          <dl id="metric-detail" class="facts"></dl>
+        </article>
+      </section>
+
       <section class="grid">
         <article class="panel chart-card">
-          <h2>Main Branch Trend</h2>
+          <h2 id="chart-title">Main Branch Trend</h2>
           <canvas id="main-chart" width="960" height="320"></canvas>
         </article>
         <article class="panel">
@@ -41,16 +56,16 @@
           <dl id="latest-run" class="facts"></dl>
         </article>
         <article class="panel">
-          <h2>Top Self Cycles</h2>
+          <h2 id="detail-title">Top Self Cycles</h2>
           <table>
             <thead>
               <tr>
-                <th>Function</th>
-                <th>Cycles</th>
-                <th>%</th>
+                <th id="detail-col-1">Function</th>
+                <th id="detail-col-2">Cycles</th>
+                <th id="detail-col-3">%</th>
               </tr>
             </thead>
-            <tbody id="top-self"></tbody>
+            <tbody id="detail-body"></tbody>
           </table>
         </article>
       </section>
